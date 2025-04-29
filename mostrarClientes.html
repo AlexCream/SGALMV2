@@ -1,87 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automotriz Los Amigos - Citas Pendientes</title>
+    <title>Adeudos - Automotriz Los Amigos</title>
 </head>
-
 <body>
-    <header>
-        <!-- Botón Home en esquina izquierda -->
-        <div style="position: absolute; top: 10px; left: 10px;">
+    <!-- Header con botones en posiciones correctas -->
+    <header style="position: relative;">
+        <!-- Botón Home a la izquierda -->
+        <div style="position: absolute; left: 10px; top: 10px;">
             <button onclick="irAHome()">Home</button>
         </div>
-        <h1 style="text-align: center; margin-top: 40px;">Automotriz Los Amigos</h1>
-        <!-- Botones en esquina superior derecha -->
-        <div style="position: absolute; top: 10px; right: 10px;">
-            <button onclick="cerrarSesion()">Cerrar Sesión</button>
-            <button onclick="irAPerfil()">Mi Perfil</button>
-        </div>
-        <!-- Botón Home en esquina izquierda -->
-        <div style="position: absolute; top: 10px; left: 10px;">
-            <button onclick="irAHome()">Home</button>
+        
+        <h1 style="text-align: center; padding-top: 40px;">Automotriz Los Amigos</h1>
+        
+        <!-- Botones a la derecha -->
+        <div style="position: absolute; right: 10px; top: 10px;">
+            <button onclick="irAPerfil()">Perfil</button>
+            <button onclick="cerrarSesion()">Salir</button>
         </div>
     </header>
 
+    <!-- Contenido principal -->
     <main>
         <section>
-            <h2>Mostrar Citas Pendientes</h2>
+            <h2 style="text-align: center;">Adeudos y No Adeudos</h2>
+            
+            <!-- Tabla 1 -->
+            <div style="overflow-x: auto; margin: 20px;">
+                <table border="1" style="width: 100%;">
+                    <caption><strong>Toyota Corolla</strong></caption>
+                    <tr>
+                        <th style="width: 50%;">Información del Pago</th>
+                        <th style="width: 50%;">Información del Cliente</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><strong>Estado:</strong> Pagado</p>
+                            <p><strong>Método:</strong> Contado</p>
+                            <p><strong>Fecha:</strong> 2024-10-22</p>
+                            <p><strong>Monto:</strong> $170,000</p>
+                        </td>
+                        <td>
+                            <p><strong>Nombre:</strong> Juan Barrera</p>
+                            <p><strong>Teléfono:</strong> 5234234</p>
+                            <p><strong>Correo:</strong> Juan@example.com</p>
+                            <p><strong>Domicilio:</strong> Los cabos</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
-            <div style="overflow-x: auto;">
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Teléfono</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>01</td>
-                            <td>Gustavo Fring</td>
-                            <td>Fring@example.com</td>
-                            <td>723432</td>
-                            <td>07/04/2025</td>
-                            <td>11:00 AM</td>
-                            <td>
-                                <button onclick="modificarCita('01')">Modificar</button>
-                                <button onclick="cancelarCita('01')">Cancelar</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>02</td>
-                            <td>Juan Godoy</td>
-                            <td>Godoy@example.com</td>
-                            <td>723432</td>
-                            <td>02/02/2025</td>
-                            <td>12:30 PM</td>
-                            <td>
-                                <button onclick="modificarCita('02')">Modificar</button>
-                                <button onclick="cancelarCita('02')">Cancelar</button>
-                            </td>
-                        </tr>
-                    </tbody>
+            <!-- Tabla 2 -->
+            <div style="overflow-x: auto; margin: 20px;">
+                <table border="1" style="width: 100%;">
+                    <caption><strong>Chevy Pop</strong></caption>
+                    <tr>
+                        <th style="width: 50%;">Información del Pago</th>
+                        <th style="width: 50%;">Información del Cliente</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><strong>Estado:</strong> Pagado</p>
+                            <p><strong>Método:</strong> Contado</p>
+                            <p><strong>Fecha:</strong> 2014-06-15</p>
+                            <p><strong>Monto:</strong> $9,000,000</p>
+                        </td>
+                        <td>
+                            <p><strong>Nombre:</strong> Gustavo Fring</p>
+                            <p><strong>Teléfono:</strong> 234657</p>
+                            <p><strong>Correo:</strong> Fring@example.com</p>
+                            <p><strong>Domicilio:</strong> Albuquerque</p>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>Sistema de Gestión de Citas - Automotriz Los Amigos</p>
+    <footer style="text-align: center; margin-top: 30px;">
+        <p>© 2025 Automotriz Los Amigos</p>
     </footer>
 
-    <script>
-
-
-
-    </script>
+  
 </body>
-
 </html>
