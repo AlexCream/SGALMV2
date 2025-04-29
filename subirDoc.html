@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automotriz Los Amigos - Subir Documentos</title>
+</head>
+<body>
+    <header>
+        <!-- Botón Home -->
+        <div style="position: absolute; top: 10px; left: 10px;">
+            <button onclick="irAHome()">Home</button>
+        </div>
+        
+        <h1 style="text-align: center; margin-top: 40px;">Automotriz Los Amigos</h1>
+        
+        <!-- Botones derecha -->
+        <div style="position: absolute; top: 10px; right: 10px;">
+            <button onclick="cerrarSesion()">Cerrar Sesión</button>
+            <button onclick="irAPerfil()">Mi Perfil</button>
+        </div>
+    </header>
+
+    <main>
+        <section style="max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="text-align: center;">Subir Documentación</h2>
+            
+            <!-- Formulario de documentos -->
+            <form id="formDocumentos" onsubmit="subirDocumentos(event)">
+                <!-- Identificación Oficial -->
+                <div style="margin-bottom: 20px;">
+                    <h3>Identificación Oficial</h3>
+                    <input type="file" id="identificacion" accept=".pdf,.jpg,.png" required>
+                    <p style="font-size: 12px; color: #666;">Formatos aceptados: PDF, JPG, PNG (Máx. 5MB)</p>
+                </div>
+                
+                <!-- Comprobante de Domicilio -->
+                <div style="margin-bottom: 30px;">
+                    <h3>Comprobante de Domicilio</h3>
+                    <input type="file" id="domicilio" accept=".pdf,.jpg,.png" required>
+                    <p style="font-size: 12px; color: #666;">Formatos aceptados: PDF, JPG, PNG (Máx. 5MB)</p>
+                </div>
+                
+                <!-- Botón de envío -->
+                <div style="text-align: center;">
+                    <button type="submit" style="padding: 10px 20px;">Subir Documentos</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer style="text-align: center; margin-top: 30px;">
+        <p>Sistema de Gestión Documental - Automotriz Los Amigos</p>
+    </footer>
+
+</body>
+</html>

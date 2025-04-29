@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adeudos - Automotriz Los Amigos</title>
+</head>
+<body>
+    <!-- Header con botones flotantes -->
+    <header>
+        <h1>Automotriz Los Amigos</h1>
+        <div style="position: absolute; top: 10px; right: 10px;">
+            <button onclick="irAHome()">Home</button>
+            <button onclick="irAPerfil()">Perfil</button>
+            <button onclick="cerrarSesion()">Salir</button>
+        </div>
+    </header>
+
+    <!-- Contenido principal con tablas responsivas -->
+    <main>
+        <section>
+            <h2>Adeudos y No Adeudos</h2>
+            
+            <!-- Contenedor responsivo para tablas -->
+            <div style="overflow-x: auto;">
+                <!-- Tabla 1 -->
+                <table border="1" style="width: 100%; margin-bottom: 20px;">
+                    <caption><strong>Toyota Corolla</strong></caption>
+                    <tr>
+                        <th style="width: 50%;">Información del Pago</th>
+                        <th style="width: 50%;">Información del Cliente</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><strong>Estado:</strong> Pagado</p>
+                            <p><strong>Método:</strong> Contado</p>
+                            <p><strong>Fecha:</strong> 2024-10-22</p>
+                            <p><strong>Monto:</strong> $170,000</p>
+                        </td>
+                        <td>
+                            <p><strong>Nombre:</strong> Juan Barrera</p>
+                            <p><strong>Teléfono:</strong> 5234234</p>
+                            <p><strong>Correo:</strong> Juan@example.com</p>
+                            <p><strong>Domicilio:</strong> Los cabos</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Tabla 2 -->
+                <table border="1" style="width: 100%;">
+                    <caption><strong>Chevy Pop</strong></caption>
+                    <tr>
+                        <th style="width: 50%;">Información del Pago</th>
+                        <th style="width: 50%;">Información del Cliente</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p><strong>Estado:</strong> Pagado</p>
+                            <p><strong>Método:</strong> Contado</p>
+                            <p><strong>Fecha:</strong> 2014-06-15</p>
+                            <p><strong>Monto:</strong> $9,000,000</p>
+                        </td>
+                        <td>
+                            <p><strong>Nombre:</strong> Gustavo Fring</p>
+                            <p><strong>Teléfono:</strong> 234657</p>
+                            <p><strong>Correo:</strong> Fring@example.com</p>
+                            <p><strong>Domicilio:</strong> Albuquerque</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Automotriz Los Amigos</p>
+    </footer>
+
+    <script>
+
+    </script>
+</body>
+</html>
