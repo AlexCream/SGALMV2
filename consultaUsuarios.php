@@ -50,11 +50,11 @@ if($sqlRes->num_rows > 0){
             //le indicamos los caracteres especiales para evitar errores de formato, le decirmos por medio de la funcion
             //htmlspecialchars el campo a transformar, el entquotes y el tipo de caracteres que estaremos usando
             "nombre" => htmlspecialchars($fila["nombre"],ENT_QUOTES,"UTF-8"),
-            "apellido" => htmlspecialchars($fila["apellido"],ENT_QUOTES,"UTF-8")  
-            "direccion" => htmlspecialchars($fila["nombre"],ENT_QUOTES,"UTF-8"),
-            "telefono1" => htmlspecialchars($fila["cellphone1"],ENT_QUOTES,"UTF-8")  
+            "apellido" => htmlspecialchars($fila["apellido"],ENT_QUOTES,"UTF-8"),
+            "direccion" => htmlspecialchars($fila["direccion"],ENT_QUOTES,"UTF-8"),
+            "telefono1" => htmlspecialchars($fila["cellphone1"],ENT_QUOTES,"UTF-8"),  
             "telefono2" => htmlspecialchars($fila["cellphone2"],ENT_QUOTES,"UTF-8"),
-            "correo" => htmlspecialchars($fila["email"],ENT_QUOTES,"UTF-8")  
+            "correo" => htmlspecialchars($fila["email"],ENT_QUOTES,"UTF-8"),
         ]; 
     }
 }else{
