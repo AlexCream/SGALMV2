@@ -7,6 +7,7 @@
 <body>
 
 <!-- Contenedor principal -->
+<form action="registro_cliente.php" method="POST">
 <table width="100%" border="0" cellspacing="0" cellpadding="20">
     <tr>
         <td align="center">
@@ -27,16 +28,16 @@
                     <td width="50%">
                         <table border="0" cellspacing="5">
                             <tr><td><strong>Nombre</strong></td></tr>
-                            <tr><td><input type="text" size="25"></td></tr>
+                            <tr><td><input type="text" name="nombre" size="25" required></td></tr>
                             
                             <tr><td><strong>Apellidos</strong></td></tr>
-                            <tr><td><input type="text" size="25"></td></tr>
+                            <tr><td><input type="text" name="apellidos" size="25" required></td></tr>
                             
                             <tr><td><strong>Dirección</strong></td></tr>
-                            <tr><td><input type="text" size="25"></td></tr>
+                            <tr><td><input type="text" name="direccion" size="25" required></td></tr>
 
                             <tr><td><strong>Teléfono principal</strong></td></tr>
-                            <tr><td><input type="tel" size="25"></td></tr>
+                            <tr><td><input type="tel" name="telefono_principal" size="25" required></td></tr>
                         </table>
                     </td>
                     
@@ -44,16 +45,16 @@
                     <td width="50%">
                         <table border="0" cellspacing="5">
                             <tr><td><strong>Correo</strong></td></tr>
-                            <tr><td><input type="email" size="25"></td></tr>
+                            <tr><td><input type="email" name="correo" size="25" required></td></tr>
                             
                             <tr><td><strong>Contraseña</strong></td></tr>
-                            <tr><td><input type="password" size="25"></td></tr>
+                            <tr><td><input type="password" name="contrasena" size="25" required></td></tr>
                             
                             <tr><td><strong>Confirmar contraseña</strong></td></tr>
-                            <tr><td><input type="password" size="25"></td></tr>
+                            <tr><td><input type="password" name="confirmar_contrasena" size="25" required></td></tr>
                             
                             <tr><td><strong>Teléfono secundario</strong></td></tr>
-                            <tr><td><input type="tel" size="25"></td></tr>
+                            <tr><td><input type="tel" name="telefono_secundario" size="25"></td></tr>
                         </table>
                     </td>
                 </tr>
@@ -61,13 +62,14 @@
                 <!-- Botón -->
                 <tr>
                     <td colspan="2" align="center" style="padding-top: 20px;">
-                        <button type="button" style="padding: 8px 20px;">Registrarse</button>
+                        <button type="submit" style="padding: 8px 20px;">Registrarse</button>
                     </td>
                 </tr>
             </table>
         </td>
     </tr>
 </table>
+</form>
 
 <!-- Pie de página -->
 <table width="100%" border="0">
