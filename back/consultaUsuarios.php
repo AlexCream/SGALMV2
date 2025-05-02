@@ -1,7 +1,7 @@
 <?php
 //ESTE SCRIPT RECIBE COMO PARAMETRO DE ENTRADA CARACTERES O CADENAS QUE FILTRAN LA CONSULTA DE CLIENTES EN LA BASE DE DATOS
 header("Content-Type: application/json");
-include("conexion.php");
+include("conexionConsulta.php");
 
 //recepcion del filtro de busqueda
 $filtro = isset($_POST["filtro"]) ? trim($_POST["filtro"]) : "";
@@ -15,11 +15,11 @@ $limit = 10;
 $inicia = ($pagina-1)*$limit;
 
 //saneacion del filtro
-$filtro = $conexion -> real_escape_string($filtro);
+$filtro = $conexionConsulta -> real_escape_string($filtro);
 //saneacion del limite
 
 //saneacion del inicio
-$filtro = $conexion -> real_escape_string($filtro);
+$filtro = $conexionConsulta -> real_escape_string($filtro);
 
 
 //creacion de la consulta de busqueda
@@ -34,7 +34,7 @@ $sqlQry = "SELECT * FROM usuarios WHERE
     OFFSET $inicia";
 
 //Ejecutar la consulta
-$sqlRes = $conexion->query($sqlQry);
+$sqlRes = $conexionConsulta->query($sqlQry);
 
 //Creamos un array
 $datos = [];
@@ -63,7 +63,7 @@ if($sqlRes->num_rows > 0){
 
 //Conteo de las paginas totales necesarias
 $contarQry = "SELECT COUNT(*) as total FROM usuarios";
-$contarRes = $conexion->query($contarQry);
+$contarRes = $conexionConsulta->query($contarQry);
 $resultado = $contarRes->fetch_assoc();
 $cantidadregistros = $resultado["total"];
 $paginastotales=ceil($cantidadregistros/$limit);
@@ -72,5 +72,5 @@ $paginastotales=ceil($cantidadregistros/$limit);
 echo json_encode(['datos' => $datos,'paginas' => $paginastotales],JSON_UNESCAPED_UNICODE);
     
 //Cerramos la conexion a la base de datos
-$conexion->close();
+$conexionConsulta->close();
 ?>
