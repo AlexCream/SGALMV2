@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - Automotriz Los Amigos</title>
+</head>
+<body>
+
+<!-- Contenedor principal -->
+<form action="registro_cliente.php" method="POST">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="20">
+    <tr>
+        <td align="center">
+            <!-- Tabla de contenido -->
+            <table border="0" width="600">
+                <!-- Encabezado -->
+                <tr>
+                    <td colspan="2" align="center">
+                        <h1>Automotriz Los Amigos</h1>
+                        <h2>Registrarse</h2>
+                        <hr>
+                    </td>
+                </tr>
+                
+                <!-- Campos en 2 columnas -->
+                <tr valign="top">
+                    <!-- Columna izquierda -->
+                    <td width="50%">
+                        <table border="0" cellspacing="5">
+                            <tr><td><strong>Nombre</strong></td></tr>
+                            <tr><td><input type="text" name="nombre" size="25" required></td></tr>
+                            
+                            <tr><td><strong>Apellidos</strong></td></tr>
+                            <tr><td><input type="text" name="apellidos" size="25" required></td></tr>
+                            
+                            <tr><td><strong>Dirección</strong></td></tr>
+                            <tr><td><input type="text" name="direccion" size="25" required></td></tr>
+
+                            <tr><td><strong>Teléfono principal</strong></td></tr>
+                            <tr><td><input type="tel" name="telefono_principal" size="25" required></td></tr>
+                        </table>
+                    </td>
+                    
+                    <!-- Columna derecha -->
+                    <td width="50%">
+                        <table border="0" cellspacing="5">
+                            <tr><td><strong>Correo</strong></td></tr>
+                            <tr><td><input type="email" name="correo" size="25" required></td></tr>
+                            
+                            <tr><td><strong>Contraseña</strong></td></tr>
+                            <tr><td><input type="password" name="contrasena" size="25" required></td></tr>
+                            
+                            <tr><td><strong>Confirmar contraseña</strong></td></tr>
+                            <tr><td><input type="password" name="confirmar_contrasena" size="25" required></td></tr>
+                            
+                            <tr><td><strong>Teléfono secundario</strong></td></tr>
+                            <tr><td><input type="tel" name="telefono_secundario" size="25"></td></tr>
+                        </table>
+                    </td>
+                </tr>
+                
+                <!-- Botón -->
+                <tr>
+                    <td colspan="2" align="center" style="padding-top: 20px;">
+                        <button type="submit" style="padding: 8px 20px;">Registrarse</button>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</form>
+
+<!-- Pie de página -->
+<table width="100%" border="0">
+    <tr>
+        <td align="center">
+            <hr>
+            <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
+        </td>
+    </tr>
+</table>
+
+
+<script>
+    document.querySelector("form").addEventListener("submit", function(e) {
+        let pass = document.querySelector('input[name="contrasena"]').value;
+        let confirm = document.querySelector('input[name="confirmar_contrasena"]').value;
+        if (pass !== confirm) {
+            alert("Las contraseñas no coinciden.");
+            e.preventDefault(); // Cancela el envío del formulario
+        }
+    });
+    </script>
+    
+
+</body>
+</html>

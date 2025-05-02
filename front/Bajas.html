@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automotriz Los Amigos - Bajas</title>
+</head>
+<body>
+    <header>
+        <!-- Botón Home -->
+        <div style="position: absolute; top: 10px; left: 10px;">
+            <button onclick="irAHome()">Home</button>
+        </div>
+        
+        <h1 style="text-align: center; margin-top: 40px;">Automotriz Los Amigos</h1>
+        
+        <!-- Botones derecha -->
+        <div style="position: absolute; top: 10px; right: 10px;">
+            <button onclick="cerrarSesion()">Cerrar Sesión</button>
+            <button onclick="irAPerfil()">Mi Perfil</button>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2 style="text-align: center;">Baja a cliente o vendedor</h2>
+            
+            <!-- Buscador -->
+            <div style="text-align: center; margin: 20px;">
+                <input type="text" id="busqueda" placeholder="Buscar por nombre, apellido, ID o correo" style="padding: 8px; width: 300px;">
+                <button onclick="filtrarUsuarios()">Buscar</button>
+            </div>
+            
+            <!-- Tabla responsiva -->
+            <div style="overflow-x: auto; margin: 20px;">
+                <table border="1" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Dirección</th>
+                            <th>Teléfono Principal</th>
+                            <th>Teléfono Secundario</th>
+                            <th>Contacto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaUsuarios">
+                        <!-- Datos se cargarán dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paginación -->
+            <div style="text-align: center; margin-top: 20px;">
+                <button onclick="cambiarPagina(-1)">Anterior</button>
+                <span id="paginaActual" style="margin: 0 15px;">1</span>
+                <button onclick="cambiarPagina(1)">Siguiente</button>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; margin-top: 30px;">
+        <p>Sistema de Gestión de Usuarios - Automotriz Los Amigos</p>
+    </footer>
+
+    <script>
+        // Datos de ejemplo
+        const usuarios = [
+            {id: 1, nombre: "Raul", apellidos: "Boez", direccion: "Los Cabos", telPrincipal: "6213123553", telSecundario: "63452133", contacto: "Raul@example.com"},
+            {id: 2, nombre: "Manuel", apellidos: "Zarate", direccion: "Ciudad Constitución", telPrincipal: "61235435", telSecundario: "6234234", contacto: "Zarate@example.com"},
+            // Agrega más usuarios aquí...
+        ];
+
+        let pagina = 1;
+        const porPagina = 10;
+        let usuariosFiltrados = [...usuarios];
+
+        function cargarTabla() {
+            const inicio = (pagina - 1) * porPagina;
+            const fin = inicio + porPagina;
+            const usuariosPagina = usuariosFiltrados.slice(inicio, fin);
+            
+            let html = '';
+            usuariosPagina.forEach(usuario => {
+                html += `
+                <tr>
+                    <td>${usuario.id}</td>
+                    <td>${usuario.nombre}</td>
+                    <td>${usuario.apellidos}</td>
+                    <td>${usuario.direccion}</td>
+                    <td>${usuario.telPrincipal}</td>
+                    <td>${usuario.telSecundario}</td>
+                    <td>${usuario.contacto}</td>
+                    <td><button onclick="darDeBaja(${usuario.id})">Dar de baja</button></td>
+                </tr>
+                `;
+            });
+            
+            document.getElementById('tablaUsuarios').innerHTML = html;
+            document.getElementById('paginaActual').textContent = pagina;
+        }
+
+        function filtrarUsuarios() {
+            const busqueda = document.getElementById('busqueda').value.toLowerCase();
+            usuariosFiltrados = usuarios.filter(usuario => 
+                usuario.id.toString().includes(busqueda) ||
+                usuario.nombre.toLowerCase().includes(busqueda) ||
+                usuario.apellidos.toLowerCase().includes(busqueda)
+            );
+            pagina = 1;
+            cargarTabla();
+        }
+
+        function cambiarPagina(direccion) {
+            const paginasTotales = Math.ceil(usuariosFiltrados.length / porPagina);
+            if (pagina + direccion > 0 && pagina + direccion <= paginasTotales) {
+                pagina += direccion;
+                cargarTabla();
+            }
+        }
+
+        function darDeBaja(id) {
+            if (confirm(`¿Dar de baja al usuario con ID ${id}?`)) {
+                // Lógica para dar de baja
+                alert(`Usuario ${id} dado de baja`);
+            }
+        }
+
+        function irAHome() { alert("Redirigiendo al inicio"); }
+        function cerrarSesion() { alert("Sesión cerrada"); }
+        function irAPerfil() { alert("Redirigiendo a perfil"); }
+
+        // Cargar tabla al inicio
+        cargarTabla();
+    </script>
+</body>
+</html>
