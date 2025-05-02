@@ -8,6 +8,7 @@
 
 <!-- Contenedor principal -->
 <form action="registro_cliente.php" method="POST">
+
 <table width="100%" border="0" cellspacing="0" cellpadding="20">
     <tr>
         <td align="center">
@@ -80,6 +81,19 @@
         </td>
     </tr>
 </table>
+
+
+<script>
+    document.querySelector("form").addEventListener("submit", function(e) {
+        let pass = document.querySelector('input[name="contrasena"]').value;
+        let confirm = document.querySelector('input[name="confirmar_contrasena"]').value;
+        if (pass !== confirm) {
+            alert("Las contraseñas no coinciden.");
+            e.preventDefault(); // Cancela el envío del formulario
+        }
+    });
+    </script>
+    
 
 </body>
 </html>

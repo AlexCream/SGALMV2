@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //Insertar con la setencias de preapred statement.
 
-    $stmt = $conexion->preapre("INSERT INTO clientes (nombre,apellidos, direccion,
+    $stmt = $conexion->prepare("INSERT INTO clientes (nombre,apellidos, direccion,
     telefono_principal,telefono_secundario,email,contrasena) VALUES (?,?,?,?,?,?,?)");
 
     $stmt->bind_param(
