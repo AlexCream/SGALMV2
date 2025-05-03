@@ -10,19 +10,18 @@
 <body>
 
     <!-- Encabezado con tabla para la barra superior -->
-    <header>
-        <table width="100%">
-            <tr>
-                <td><a href="#"><img src="icono-home.png" alt="Inicio" width="30"></a></td>
-                <td><a href="#"><img src="icono-catalogo.png" alt="Catálogo" width="30"></a></td>
-                <td align="center">
-                    <h1>Automotriz Los Amigos</h1>
-                </td>
-                <td align="right">
-                    <button>Cerrar Sesión</button>
-                </td>
-            </tr>
-        </table>
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+        <!-- Botón Inicio -->
+        <button onclick="irAHome()">Inicio</button>
+        
+        <!-- Título alineado con botones -->
+        <h1 style="margin: 0;">Automotriz Los Amigos</h1>
+        
+        <!-- Botones derecha -->
+        <div>
+            <button onclick="irAPerfil()">Mi Perfil</button>
+            <button onclick="cerrarSesion()">Cerrar Sesión</button>
+        </div>
     </header>
 
     <!-- Contenido principal -->

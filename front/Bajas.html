@@ -6,27 +6,25 @@
     <title>Automotriz Los Amigos - Bajas</title>
 </head>
 <body>
-    <header>
-        <!-- Botón Home -->
-        <div style="position: absolute; top: 10px; left: 10px;">
-            <button onclick="irAHome()">Home</button>
-        </div>
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+        <!-- Botón Inicio -->
+        <button onclick="irAHome()">Inicio</button>
         
-        <h1 style="text-align: center; margin-top: 40px;">Automotriz Los Amigos</h1>
+        <!-- Título alineado con botones -->
+        <h1 style="margin: 0;">Automotriz Los Amigos</h1>
         
         <!-- Botones derecha -->
-        <div style="position: absolute; top: 10px; right: 10px;">
-            <button onclick="cerrarSesion()">Cerrar Sesión</button>
+        <div>
             <button onclick="irAPerfil()">Mi Perfil</button>
+            <button onclick="cerrarSesion()">Cerrar Sesión</button>
         </div>
     </header>
 
     <main>
         <section>
-            <h2 style="text-align: center;">Baja a cliente o vendedor</h2>
-            
-            <!-- Buscador -->
-            <div style="text-align: center; margin: 20px;">
+            <!-- Título y buscador alineados a la izquierda -->
+            <div style="text-align: left; margin: 20px;">
+                <h2>Baja a cliente o vendedor</h2>
                 <input type="text" id="busqueda" placeholder="Buscar por nombre, apellido, ID o correo" style="padding: 8px; width: 300px;">
                 <button onclick="filtrarUsuarios()">Buscar</button>
             </div>
@@ -61,14 +59,14 @@
         </section>
     </main>
 
-    <footer style="text-align: center; margin-top: 30px;">
-        <p>Sistema de Gestión de Usuarios - Automotriz Los Amigos</p>
+    <footer align="center">
+        <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
     </footer>
 
     <script>
         // Datos de ejemplo
         const usuarios = [
-            {id: 1, nombre: "Raul", apellidos: "Boez", direccion: "Los Cabos", telPrincipal: "6213123553", telSecundario: "63452133", contacto: "Raul@example.com"},
+            {id: 1, nombre: "Raul", apellidos: "Baez", direccion: "Los Cabos", telPrincipal: "6213123553", telSecundario: "63452133", contacto: "Raul@example.com"},
             {id: 2, nombre: "Manuel", apellidos: "Zarate", direccion: "Ciudad Constitución", telPrincipal: "61235435", telSecundario: "6234234", contacto: "Zarate@example.com"},
             // Agrega más usuarios aquí...
         ];

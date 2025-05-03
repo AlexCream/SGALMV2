@@ -6,21 +6,29 @@
     <title>Automotriz Los Amigos - Citas Pendientes</title>
 </head>
 <body>
-    <header>
-        <h1>Automotriz Los Amigos</h1>
-        <!-- Botones en esquina superior derecha -->
-        <div style="position: absolute; top: 10px; right: 10px;">
-            <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    <!-- Encabezado con botones alineados -->
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+        <!-- Botón Inicio a la izquierda -->
+        <button onclick="irAInicio()">Inicio</button>
+        
+        <!-- Título centrado -->
+        <h1 style="margin: 0; text-align: center;">Automotriz Los Amigos</h1>
+        
+        <!-- Botones a la derecha -->
+        <div>
             <button onclick="irAPerfil()">Mi Perfil</button>
+            <button onclick="cerrarSesion()">Cerrar Sesión</button>
         </div>
     </header>
 
     <main>
-        <section>
-            <h2>Mostrar Citas Pendientes</h2>
+        <section style="padding: 0 10px;">
+            <!-- Título alineado a la izquierda -->
+            <h2 style="text-align: left; margin-left: 10px;">Mostrar Citas Pendientes</h2>
             
+            <!-- Tabla responsiva -->
             <div style="overflow-x: auto;">
-                <table border="1">
+                <table border="1" style="width: 100%;">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -63,11 +71,15 @@
         </section>
     </main>
 
-    <footer>
-        <p>Sistema de Gestión de Citas - Automotriz Los Amigos</p>
+    <footer align="center">
+        <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
     </footer>
 
     <script>
+        function irAInicio() {
+            alert("Redirigiendo al inicio");
+        }
+
         function modificarCita(id) {
             alert(`Modificar cita con ID: ${id}`);
         }
