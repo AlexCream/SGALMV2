@@ -1,117 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Catálogo - Automotriz Los Amigos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automotriz Los Amigos - Bajas</title>
 </head>
 <body>
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+        <!-- Botón Inicio -->
+        <button onclick="irAHome()">Inicio</button>
+        
+        <!-- Título alineado con botones -->
+        <h1 style="margin: 0;">Automotriz Los Amigos</h1>
+        
+        <!-- Botones derecha -->
+        <div>
+            <button onclick="irAPerfil()">Mi Perfil</button>
+            <button onclick="cerrarSesion()">Cerrar Sesión</button>
+        </div>
+    </header>
 
-  <!-- Encabezado superior -->
-  <header>
-    <table width="100%">
-      <tr>
-        <td><a href="#"><img src="icono-home.png" alt="Inicio" width="30"></a></td>
-        <td><a href="#"><img src="icono-catalogo.png" alt="Catálogo" width="30"></a></td>
-        <td align="center">
-          <h1>Automotriz Los Amigos</h1>
-          <p>Encuentra el auto ideal para ti</p>
-        </td>
-        <td align="right">
-          <button>Cerrar Sesión</button>
-        </td>
-      </tr>
-    </table>
-  </header>
+    <main>
+        <section>
+            <!-- Título y buscador alineados a la izquierda -->
+            <div style="text-align: left; margin: 20px;">
+                <h2>Baja a cliente o vendedor</h2>
+                <input type="text" id="busqueda" placeholder="Buscar por nombre, apellido, ID o correo" style="padding: 8px; width: 300px;">
+                <button onclick="filtrarUsuarios()">Buscar</button>
+            </div>
+            
+            <!-- Tabla responsiva -->
+            <div style="overflow-x: auto; margin: 20px;">
+                <table border="1" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Dirección</th>
+                            <th>Teléfono Principal</th>
+                            <th>Teléfono Secundario</th>
+                            <th>Contacto</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaUsuarios">
+                        <!-- Datos se cargarán dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
 
-  <!-- Filtros -->
-  <section>
-    <table align="center" cellpadding="5">
-      <tr>
-        <td>Filtrar por:</td>
-        <td>
-          <label for="marca">Marca:</label>
-          <select id="marca" name="marca">
-            <option>Todos</option>
-            <option>Toyota</option>
-            <option>Dodge</option>
-            <option>Jeep</option>
-          </select>
-        </td>
-        <td>
-          <label for="modelo">Modelo:</label>
-          <select id="modelo" name="modelo">
-            <option>Todos</option>
-            <option>Corolla</option>
-            <option>Challenger</option>
-            <option>Wrangler</option>
-          </select>
-        </td>
-        <td>
-          <label for="precio">Precio:</label>
-          <select id="precio" name="precio">
-            <option>Todos</option>
-            <option>Menor a $200,000</option>
-            <option>$200,000 - $400,000</option>
-            <option>Mayor a $400,000</option>
-          </select>
-        </td>
-        <td>
-          <label for="color">Color:</label>
-          <select id="color" name="color">
-            <option>Todos</option>
-            <option>Negro</option>
-            <option>Rojo</option>
-            <option>Gris</option>
-          </select>
-        </td>
-        <td>
-          <button>Aplicar Filtros</button>
-        </td>
-      </tr>
-    </table>
-  </section>
+            <!-- Paginación -->
+            <div style="text-align: center; margin-top: 20px;">
+                <button onclick="cambiarPagina(-1)">Anterior</button>
+                <span id="paginaActual" style="margin: 0 15px;">1</span>
+                <button onclick="cambiarPagina(1)">Siguiente</button>
+            </div>
+        </section>
+    </main>
 
-  <!-- Título de autos -->
-  <section align="center">
-    <h2>Autos Disponibles</h2>
-  </section>
+    <footer align="center">
+        <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
+    </footer>
 
-  <!-- Tabla de autos -->
-  <main>
-    <table width="100%" align="center" cellpadding="20">
-      <tr>
-        <!-- Auto 1 -->
-        <td align="center">
-          <img src="toyota-corolla.jpg" alt="Toyota Corolla 2021" width="300"><br>
-          <strong>Toyota Corolla 2021</strong><br>
-          Precio: $XXXX-XXXX<br><br>
-          <button>Ver Detalles</button>
-        </td>
+    <script>
+        // Datos de ejemplo
+        const usuarios = [
+            {id: 1, nombre: "Raul", apellidos: "Baez", direccion: "Los Cabos", telPrincipal: "6213123553", telSecundario: "63452133", contacto: "Raul@example.com"},
+            {id: 2, nombre: "Manuel", apellidos: "Zarate", direccion: "Ciudad Constitución", telPrincipal: "61235435", telSecundario: "6234234", contacto: "Zarate@example.com"},
+            // Agrega más usuarios aquí...
+        ];
 
-        <!-- Auto 2 -->
-        <td align="center">
-          <img src="challenger.jpg" alt="Challenger R/T 2019" width="300"><br>
-          <strong>Challenger R/T 2019</strong><br>
-          Precio: $XXXX-XXXX<br><br>
-          <button>Ver Detalles</button>
-        </td>
+        let pagina = 1;
+        const porPagina = 10;
+        let usuariosFiltrados = [...usuarios];
 
-        <!-- Auto 3 -->
-        <td align="center">
-          <img src="jeep-wrangler.jpg" alt="Jeep Wrangler 2019" width="300"><br>
-          <strong>Jeep Wrangler 2019</strong><br>
-          Precio: $XXXX-XXXX<br><br>
-          <button>Ver Detalles</button>
-        </td>
-      </tr>
-    </table>
-  </main>
+        function cargarTabla() {
+            const inicio = (pagina - 1) * porPagina;
+            const fin = inicio + porPagina;
+            const usuariosPagina = usuariosFiltrados.slice(inicio, fin);
+            
+            let html = '';
+            usuariosPagina.forEach(usuario => {
+                html += `
+                <tr>
+                    <td>${usuario.id}</td>
+                    <td>${usuario.nombre}</td>
+                    <td>${usuario.apellidos}</td>
+                    <td>${usuario.direccion}</td>
+                    <td>${usuario.telPrincipal}</td>
+                    <td>${usuario.telSecundario}</td>
+                    <td>${usuario.contacto}</td>
+                    <td><button onclick="darDeBaja(${usuario.id})">Dar de baja</button></td>
+                </tr>
+                `;
+            });
+            
+            document.getElementById('tablaUsuarios').innerHTML = html;
+            document.getElementById('paginaActual').textContent = pagina;
+        }
 
-  <!-- Pie de página -->
-  <footer align="center">
-    <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
-  </footer>
+        function filtrarUsuarios() {
+            const busqueda = document.getElementById('busqueda').value.toLowerCase();
+            usuariosFiltrados = usuarios.filter(usuario => 
+                usuario.id.toString().includes(busqueda) ||
+                usuario.nombre.toLowerCase().includes(busqueda) ||
+                usuario.apellidos.toLowerCase().includes(busqueda)
+            );
+            pagina = 1;
+            cargarTabla();
+        }
 
+        function cambiarPagina(direccion) {
+            const paginasTotales = Math.ceil(usuariosFiltrados.length / porPagina);
+            if (pagina + direccion > 0 && pagina + direccion <= paginasTotales) {
+                pagina += direccion;
+                cargarTabla();
+            }
+        }
+
+        function darDeBaja(id) {
+            if (confirm(`¿Dar de baja al usuario con ID ${id}?`)) {
+                // Lógica para dar de baja
+                alert(`Usuario ${id} dado de baja`);
+            }
+        }
+
+        function irAHome() { alert("Redirigiendo al inicio"); }
+        function cerrarSesion() { alert("Sesión cerrada"); }
+        function irAPerfil() { alert("Redirigiendo a perfil"); }
+
+        // Cargar tabla al inicio
+        cargarTabla();
+    </script>
 </body>
 </html>
