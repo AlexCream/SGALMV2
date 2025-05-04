@@ -16,7 +16,6 @@ $inicia = ($pagina-1)*$limit;
 
 //saneacion del filtro
 $filtro = $conexionConsulta -> real_escape_string($filtro);
-//saneacion del limite
 
 //saneacion del inicio
 $filtro = $conexionConsulta -> real_escape_string($filtro);
