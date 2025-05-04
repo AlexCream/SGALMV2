@@ -23,12 +23,12 @@ $filtro = $conexionConsulta -> real_escape_string($filtro);
 
 //creacion de la consulta de busqueda
 $sqlQry = "SELECT * FROM usuarios WHERE 
-    user_id LIKE '%$filtro%' OR 
-    nombre LIKE '%$filtro%' OR 
-    apellido LIKE '%$filtro%' OR 
-    email LIKE '%$filtro%' AND 
-    rol = '%$rol%' AND 
-    validado = true
+    USER_ID LIKE '%$filtro%' OR 
+    NOMBRE LIKE '%$filtro%' OR 
+    APELLIDO LIKE '%$filtro%' OR 
+    EMAIL LIKE '%$filtro%' AND 
+    ROL = '$rol' AND 
+    VALIDADO = true
     LIMIT $limit 
     OFFSET $inicia";
 
@@ -44,16 +44,16 @@ if($sqlRes->num_rows > 0){
     while($fila = $sqlRes->fetch_assoc()){
         //va almacenando los datos conforme se crean los registros nuevos
         $datos[] = [
-            "id" => $fila["id"],
+            "id" => $fila["USER_ID"],
             //
             //le indicamos los caracteres especiales para evitar errores de formato, le decirmos por medio de la funcion
             //htmlspecialchars el campo a transformar, el entquotes y el tipo de caracteres que estaremos usando
-            "nombre" => htmlspecialchars($fila["nombre"],ENT_QUOTES,"UTF-8"),
-            "apellido" => htmlspecialchars($fila["apellido"],ENT_QUOTES,"UTF-8"),
-            "direccion" => htmlspecialchars($fila["direccion"],ENT_QUOTES,"UTF-8"),
-            "telefono1" => htmlspecialchars($fila["cellphone1"],ENT_QUOTES,"UTF-8"),  
-            "telefono2" => htmlspecialchars($fila["cellphone2"],ENT_QUOTES,"UTF-8"),
-            "correo" => htmlspecialchars($fila["email"],ENT_QUOTES,"UTF-8"),
+            "nombre" => htmlspecialchars($fila["NOMBRE"],ENT_QUOTES,"UTF-8"),
+            "apellido" => htmlspecialchars($fila["APELLIDO"],ENT_QUOTES,"UTF-8"),
+            "direccion" => htmlspecialchars($fila["DIRECCION"],ENT_QUOTES,"UTF-8"),
+            "telefono1" => htmlspecialchars($fila["TELEFONO1"],ENT_QUOTES,"UTF-8"),  
+            "telefono2" => htmlspecialchars($fila["TELEFONO2"],ENT_QUOTES,"UTF-8"),
+            "correo" => htmlspecialchars($fila["EMAIL"],ENT_QUOTES,"UTF-8"),
         ]; 
     }
 }else{
