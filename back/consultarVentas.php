@@ -52,8 +52,8 @@
         while($fila = $sqlRes->fetch_assoc()){
             //va almacenando los datos conforme se crean los registros nuevos
             $datos[]=[
-                "venta" => [
-                    "id" => $fila["VENTA_ID"],
+                "id" => $fila["VENTA_ID"],
+                "detalles" => [
                     "auto" => htmlspecialchars($fila["AUTO_ID"],ENT_QUOTES,"UTF-8"),
                     "fechaVenta" => htmlspecialchars($fila["FECHA_VENTA"],ENT_QUOTES,"UTF-8"),
                     "ultimoPago" => htmlspecialchars($fila["FECHA_ULTIMO_ABONO"],ENT_QUOTES,"UTF-8"),  
