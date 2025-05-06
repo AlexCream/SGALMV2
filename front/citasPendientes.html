@@ -1,102 +1,199 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automotriz Los Amigos - Citas Pendientes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Automotriz Los Amigos - Citas Pendientes</title>
+  <style>
+    :root {
+      --main-color: #dc3545;
+      --secondary-color: #343a40;
+    }
+
+    body {
+      background: #f1f3f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: linear-gradient(135deg, var(--secondary-color), #000);
+      border-bottom: 3px solid var(--main-color);
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    }
+
+    header button {
+      background: var(--main-color);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin-left: 10px;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    header button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+    }
+
+    main {
+      padding: 20px 30px;
+    }
+
+    h2 {
+      color: var(--secondary-color);
+      margin-bottom: 15px;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+    }
+
+    thead {
+      background: var(--secondary-color);
+      color: white;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    tbody tr:hover {
+      background: #f8f9fa;
+    }
+
+    .btn-action {
+      background: var(--main-color);
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      margin-right: 5px;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-action:hover {
+      background: #c82333;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #dee2e6;
+      margin-top: 30px;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-    <!-- Encabezado con botones alineados -->
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
-        <!-- Botón Inicio a la izquierda -->
-        <button onclick="irAInicio()">Inicio</button>
-        
-        <!-- Título centrado -->
-        <h1 style="margin: 0; text-align: center;">Automotriz Los Amigos</h1>
-        
-        <!-- Botones a la derecha -->
-        <div>
-            <button onclick="irAPerfil()">Mi Perfil</button>
-            <button onclick="cerrarSesion()">Cerrar Sesión</button>
-        </div>
-    </header>
+  <header>
+    <button onclick="irAInicio()">Inicio</button>
+    <h1>Automotriz Los Amigos</h1>
+    <div>
+      <button onclick="irAPerfil()">Mi Perfil</button>
+      <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+  </header>
 
-    <main>
-        <section style="padding: 0 10px;">
-            <!-- Título alineado a la izquierda -->
-            <h2 style="text-align: left; margin-left: 10px;">Mostrar Citas Pendientes</h2>
-            
-            <!-- Tabla responsiva -->
-            <div style="overflow-x: auto;">
-                <table border="1" style="width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Teléfono</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>01</td>
-                            <td>Gustavo Fring</td>
-                            <td>Fring@example.com</td>
-                            <td>723432</td>
-                            <td>07/04/2025</td>
-                            <td>11:00 AM</td>
-                            <td>
-                                <button onclick="modificarCita('01')">Modificar</button>
-                                <button onclick="cancelarCita('01')">Cancelar</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>02</td>
-                            <td>Juan Godoy</td>
-                            <td>Godoy@example.com</td>
-                            <td>723432</td>
-                            <td>02/02/2025</td>
-                            <td>12:30 PM</td>
-                            <td>
-                                <button onclick="modificarCita('02')">Modificar</button>
-                                <button onclick="cancelarCita('02')">Cancelar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
+  <main>
+    <section>
+      <h2>Mostrar Citas Pendientes</h2>
 
-    <footer align="center">
-        <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
-    </footer>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Teléfono</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td>Gustavo Fring</td>
+              <td>Fring@example.com</td>
+              <td>723432</td>
+              <td>07/04/2025</td>
+              <td>11:00 AM</td>
+              <td>
+                <button class="btn-action" onclick="modificarCita('01')">Modificar</button>
+                <button class="btn-action" onclick="cancelarCita('01')">Cancelar</button>
+              </td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>Juan Godoy</td>
+              <td>Godoy@example.com</td>
+              <td>723432</td>
+              <td>02/02/2025</td>
+              <td>12:30 PM</td>
+              <td>
+                <button class="btn-action" onclick="modificarCita('02')">Modificar</button>
+                <button class="btn-action" onclick="cancelarCita('02')">Cancelar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        function irAInicio() {
-            alert("Redirigiendo al inicio");
-        }
+  <footer>
+    <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
+  </footer>
 
-        function modificarCita(id) {
-            alert(`Modificar cita con ID: ${id}`);
-        }
+  <script>
+    function irAInicio() {
+      alert("Redirigiendo al inicio");
+    }
 
-        function cancelarCita(id) {
-            if (confirm(`¿Cancelar cita ${id}?`)) {
-                alert(`Cita ${id} cancelada`);
-            }
-        }
+    function modificarCita(id) {
+      alert(`Modificar cita con ID: ${id}`);
+    }
 
-        function cerrarSesion() {
-            alert("Sesión cerrada");
-        }
+    function cancelarCita(id) {
+      if (confirm(`¿Cancelar cita ${id}?`)) {
+        alert(`Cita ${id} cancelada`);
+      }
+    }
 
-        function irAPerfil() {
-            alert("Redirigiendo a perfil");
-        }
-    </script>
+    function cerrarSesion() {
+      alert("Sesión cerrada");
+    }
+
+    function irAPerfil() {
+      alert("Redirigiendo a perfil");
+    }
+  </script>
 </body>
 </html>

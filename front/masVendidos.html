@@ -1,68 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Autos Más Vendidos - Automotriz Los Amigos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Autos Más Vendidos - Automotriz Los Amigos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --main-color: #dc3545;
+      --secondary-color: #343a40;
+    }
+
+    body {
+      background: #f1f3f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: linear-gradient(135deg, var(--secondary-color), #000);
+      border-bottom: 3px solid var(--main-color);
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    }
+
+    header button {
+      background: var(--main-color);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin-left: 10px;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    header button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+    }
+
+    main {
+      padding: 30px;
+      text-align: center;
+    }
+
+    h2 {
+      color: var(--secondary-color);
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .autos-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .auto-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+      transition: transform 0.3s;
+    }
+
+    .auto-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .auto-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .auto-card strong {
+      display: block;
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+      margin-bottom: 8px;
+    }
+
+    .auto-card p {
+      margin: 5px 0;
+      color: #333;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #dee2e6;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .autos-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <header>
+    <button onclick="irAHome()">Inicio</button>
+    <h1>Automotriz Los Amigos</h1>
+    <div>
+      <button onclick="irAPerfil()">Mi Perfil</button>
+      <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+  </header>
 
-    <!-- Encabezado con tabla para la barra superior -->
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
-        <!-- Botón Inicio -->
-        <button onclick="irAHome()">Inicio</button>
-        
-        <!-- Título alineado con botones -->
-        <h1 style="margin: 0;">Automotriz Los Amigos</h1>
-        
-        <!-- Botones derecha -->
-        <div>
-            <button onclick="irAPerfil()">Mi Perfil</button>
-            <button onclick="cerrarSesion()">Cerrar Sesión</button>
-        </div>
-    </header>
+  <main>
+    <h2>Autos Más Vendidos</h2>
+    <p>Descubre los autos más populares entre nuestros clientes</p>
 
-    <!-- Contenido principal -->
-    <main>
-        <section align="center">
-            <h2>Autos Más Vendidos</h2>
-            <p>Descubre los autos más populares entre nuestros clientes</p>
+    <div class="autos-grid">
+      <div class="auto-card">
+        <img src="toyota-corolla.jpg" alt="Toyota Corolla 2021" />
+        <strong>Toyota Corolla 2021</strong>
+        <p>Precio: $XXXX - XXXX</p>
+        <p>+20 Vendidos</p>
+      </div>
 
-            <!-- Tabla para los autos más vendidos -->
-            <table width="100%" border="1" cellspacing="10" cellpadding="10">
-                <tr>
-                    <td align="center">
-                        <img src="toyota-corolla.jpg" alt="Toyota Corolla 2021" width="300"><br>
-                        <strong>Toyota Corolla 2021</strong><br>
-                        Precio: $XXXX-XXXX<br>
-                        +20 Vendidos
-                    </td>
+      <div class="auto-card">
+        <img src="challenger.jpg" alt="Challenger R/T 2019" />
+        <strong>Challenger R/T 2019</strong>
+        <p>Precio: $XXXX - XXXX</p>
+        <p>+12 Vendidos</p>
+      </div>
 
-                    <td align="center">
-                        <img src="challenger.jpg" alt="Challenger R/T 2019" width="300"><br>
-                        <strong>Challenger R/T 2019</strong><br>
-                        Precio: $XXXX-XXXX<br>
-                        +12 Vendidos
-                    </td>
+      <div class="auto-card">
+        <img src="jeep-wrangler.jpg" alt="Jeep Wrangler 2019" />
+        <strong>Jeep Wrangler 2019</strong>
+        <p>Precio: $XXXX - XXXX</p>
+        <p>+40 Vendidos</p>
+      </div>
+    </div>
+  </main>
 
-                    <td align="center">
-                        <img src="jeep-wrangler.jpg" alt="Jeep Wrangler 2019" width="300"><br>
-                        <strong>Jeep Wrangler 2019</strong><br>
-                        Precio: $XXXX-XXXX<br>
-                        +40 Vendidos
-                    </td>
-                </tr>
-            </table>
-        </section>
-    </main>
+  <footer>
+    <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
+  </footer>
 
-    <!-- Pie de página -->
-    <footer align="center">
-        <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
-    </footer>
+  <script>
+    function irAHome() {
+      alert("Redirigiendo al inicio");
+    }
 
+    function irAPerfil() {
+      alert("Redirigiendo a perfil");
+    }
+
+    function cerrarSesion() {
+      alert("Sesión cerrada");
+    }
+  </script>
 </body>
-
 </html>

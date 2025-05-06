@@ -1,99 +1,183 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Registro - Automotriz Los Amigos</title>
+  <meta charset="UTF-8" />
+  <title>Registro - Automotriz Los Amigos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --main-color: #dc3545;
+      --secondary-color: #343a40;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f1f3f5;
+      color: #212529;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--secondary-color), #000);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 3px solid var(--main-color);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--secondary-color);
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .form-column {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button[type="submit"] {
+      background-color: var(--main-color);
+      color: white;
+      border: none;
+      padding: 10px 30px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-top: 20px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #c82333;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #dee2e6;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      form {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .form-column {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Contenedor principal -->
-<form action="registro_cliente.php" method="POST">
+  <header>
+    <h1>Automotriz Los Amigos</h1>
+  </header>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="20">
-    <tr>
-        <td align="center">
-            <!-- Tabla de contenido -->
-            <table border="0" width="600">
-                <!-- Encabezado -->
-                <tr>
-                    <td colspan="2" align="center">
-                        <h1>Automotriz Los Amigos</h1>
-                        <h2>Registrarse</h2>
-                        <hr>
-                    </td>
-                </tr>
-                
-                <!-- Campos en 2 columnas -->
-                <tr valign="top">
-                    <!-- Columna izquierda -->
-                    <td width="50%">
-                        <table border="0" cellspacing="5">
-                            <tr><td><strong>Nombre</strong></td></tr>
-                            <tr><td><input type="text" name="nombre" size="25" required></td></tr>
-                            
-                            <tr><td><strong>Apellidos</strong></td></tr>
-                            <tr><td><input type="text" name="apellidos" size="25" required></td></tr>
-                            
-                            <tr><td><strong>Dirección</strong></td></tr>
-                            <tr><td><input type="text" name="direccion" size="25" required></td></tr>
+  <main>
+    <h2>Registro de Cliente</h2>
+    <form action="registro_cliente.php" method="POST" id="registroForm">
+      <div class="form-column">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" name="nombre" required />
+        </div>
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" name="apellidos" required />
+        </div>
+        <div class="form-group">
+          <label for="direccion">Dirección</label>
+          <input type="text" name="direccion" required />
+        </div>
+        <div class="form-group">
+          <label for="telefono_principal">Teléfono principal</label>
+          <input type="tel" name="telefono_principal" required />
+        </div>
+      </div>
 
-                            <tr><td><strong>Teléfono principal</strong></td></tr>
-                            <tr><td><input type="tel" name="telefono_principal" size="25" required></td></tr>
-                        </table>
-                    </td>
-                    
-                    <!-- Columna derecha -->
-                    <td width="50%">
-                        <table border="0" cellspacing="5">
-                            <tr><td><strong>Correo</strong></td></tr>
-                            <tr><td><input type="email" name="correo" size="25" required></td></tr>
-                            
-                            <tr><td><strong>Contraseña</strong></td></tr>
-                            <tr><td><input type="password" name="contrasena" size="25" required></td></tr>
-                            
-                            <tr><td><strong>Confirmar contraseña</strong></td></tr>
-                            <tr><td><input type="password" name="confirmar_contrasena" size="25" required></td></tr>
-                            
-                            <tr><td><strong>Teléfono secundario</strong></td></tr>
-                            <tr><td><input type="tel" name="telefono_secundario" size="25"></td></tr>
-                        </table>
-                    </td>
-                </tr>
-                
-                <!-- Botón -->
-                <tr>
-                    <td colspan="2" align="center" style="padding-top: 20px;">
-                        <button type="submit" style="padding: 8px 20px;">Registrarse</button>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
-</form>
+      <div class="form-column">
+        <div class="form-group">
+          <label for="correo">Correo</label>
+          <input type="email" name="correo" required />
+        </div>
+        <div class="form-group">
+          <label for="contrasena">Contraseña</label>
+          <input type="password" name="contrasena" required />
+        </div>
+        <div class="form-group">
+          <label for="confirmar_contrasena">Confirmar contraseña</label>
+          <input type="password" name="confirmar_contrasena" required />
+        </div>
+        <div class="form-group">
+          <label for="telefono_secundario">Teléfono secundario</label>
+          <input type="tel" name="telefono_secundario" />
+        </div>
+      </div>
+      <div style="width: 100%; text-align: center;">
+        <button type="submit">Registrarse</button>
+      </div>
+    </form>
+  </main>
 
-<!-- Pie de página -->
-<table width="100%" border="0">
-    <tr>
-        <td align="center">
-            <hr>
-            <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
-        </td>
-    </tr>
-</table>
+  <footer>
+    <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
+  </footer>
 
-
-<script>
-    document.querySelector("form").addEventListener("submit", function(e) {
-        let pass = document.querySelector('input[name="contrasena"]').value;
-        let confirm = document.querySelector('input[name="confirmar_contrasena"]').value;
-        if (pass !== confirm) {
-            alert("Las contraseñas no coinciden.");
-            e.preventDefault(); // Cancela el envío del formulario
-        }
+  <script>
+    document.getElementById("registroForm").addEventListener("submit", function (e) {
+      const pass = document.querySelector('input[name="contrasena"]').value;
+      const confirm = document.querySelector('input[name="confirmar_contrasena"]').value;
+      if (pass !== confirm) {
+        alert("Las contraseñas no coinciden.");
+        e.preventDefault();
+      }
     });
-    </script>
-    
-
+  </script>
 </body>
 </html>
