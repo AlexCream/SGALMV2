@@ -1,8 +1,8 @@
 <?php
 $servidor = "localhost";
-$usuario = "root";
+$usuario = "Insertador";
 $pass = "admin";
-$bd = "automotriz_clientes";
+$bd = "automotriz_LA";
 
 $conexion = new mysqli($servidor, $usuario, $pass, $bd);
 

@@ -1,7 +1,7 @@
 <?php
 //ESTE SCRIPT RECIBE COMO PARAMETRO DE ENTRADA CARACTERES O CADENAS QUE FILTRAN LA CONSULTA DE CLIENTES EN LA BASE DE DATOS
 header("Content-Type: application/json");
-include("conexion.php");
+include("conexionConsulta.php");
 
 //recepcion del filtro de busqueda
 $filtro = isset($_POST["filtro"]) ? trim($_POST["filtro"]) : "";
@@ -15,26 +15,25 @@ $limit = 10;
 $inicia = ($pagina-1)*$limit;
 
 //saneacion del filtro
-$filtro = $conexion -> real_escape_string($filtro);
-//saneacion del limite
+$filtro = $conexionConsulta -> real_escape_string($filtro);
 
 //saneacion del inicio
-$filtro = $conexion -> real_escape_string($filtro);
+$filtro = $conexionConsulta -> real_escape_string($filtro);
 
 
 //creacion de la consulta de busqueda
 $sqlQry = "SELECT * FROM usuarios WHERE 
-    user_id LIKE '%$filtro%' OR 
-    nombre LIKE '%$filtro%' OR 
-    apellido LIKE '%$filtro%' OR 
-    email LIKE '%$filtro%' AND 
-    rol = '%$rol%' AND 
-    validado = true
+    USER_ID LIKE '%$filtro%' OR 
+    NOMBRE LIKE '%$filtro%' OR 
+    APELLIDO LIKE '%$filtro%' OR 
+    EMAIL LIKE '%$filtro%' AND 
+    ROL = '$rol' AND 
+    VALIDADO = true
     LIMIT $limit 
     OFFSET $inicia";
 
 //Ejecutar la consulta
-$sqlRes = $conexion->query($sqlQry);
+$sqlRes = $conexionConsulta->query($sqlQry);
 
 //Creamos un array
 $datos = [];
@@ -45,16 +44,16 @@ if($sqlRes->num_rows > 0){
     while($fila = $sqlRes->fetch_assoc()){
         //va almacenando los datos conforme se crean los registros nuevos
         $datos[] = [
-            "id" => $fila["id"],
+            "id" => $fila["USER_ID"],
             //
             //le indicamos los caracteres especiales para evitar errores de formato, le decirmos por medio de la funcion
             //htmlspecialchars el campo a transformar, el entquotes y el tipo de caracteres que estaremos usando
-            "nombre" => htmlspecialchars($fila["nombre"],ENT_QUOTES,"UTF-8"),
-            "apellido" => htmlspecialchars($fila["apellido"],ENT_QUOTES,"UTF-8"),
-            "direccion" => htmlspecialchars($fila["direccion"],ENT_QUOTES,"UTF-8"),
-            "telefono1" => htmlspecialchars($fila["cellphone1"],ENT_QUOTES,"UTF-8"),  
-            "telefono2" => htmlspecialchars($fila["cellphone2"],ENT_QUOTES,"UTF-8"),
-            "correo" => htmlspecialchars($fila["email"],ENT_QUOTES,"UTF-8"),
+            "nombre" => htmlspecialchars($fila["NOMBRE"],ENT_QUOTES,"UTF-8"),
+            "apellido" => htmlspecialchars($fila["APELLIDO"],ENT_QUOTES,"UTF-8"),
+            "direccion" => htmlspecialchars($fila["DIRECCION"],ENT_QUOTES,"UTF-8"),
+            "telefono1" => htmlspecialchars($fila["TELEFONO1"],ENT_QUOTES,"UTF-8"),  
+            "telefono2" => htmlspecialchars($fila["TELEFONO2"],ENT_QUOTES,"UTF-8"),
+            "correo" => htmlspecialchars($fila["EMAIL"],ENT_QUOTES,"UTF-8"),
         ]; 
     }
 }else{
@@ -63,7 +62,7 @@ if($sqlRes->num_rows > 0){
 
 //Conteo de las paginas totales necesarias
 $contarQry = "SELECT COUNT(*) as total FROM usuarios";
-$contarRes = $conexion->query($contarQry);
+$contarRes = $conexionConsulta->query($contarQry);
 $resultado = $contarRes->fetch_assoc();
 $cantidadregistros = $resultado["total"];
 $paginastotales=ceil($cantidadregistros/$limit);
@@ -72,5 +71,5 @@ $paginastotales=ceil($cantidadregistros/$limit);
 echo json_encode(['datos' => $datos,'paginas' => $paginastotales],JSON_UNESCAPED_UNICODE);
     
 //Cerramos la conexion a la base de datos
-$conexion->close();
+$conexionConsulta->close();
 ?>
