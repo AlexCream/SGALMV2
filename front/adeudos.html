@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +26,18 @@
             background: linear-gradient(135deg, var(--secondary-color) 0%, #000 100%);
             border-bottom: 3px solid var(--main-color);
             color: white;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            height: 84px;
+            /* Ajusta según el tamaño de tu logo */
+            width: auto;
         }
 
         header h1 {
@@ -106,7 +119,8 @@
             font-size: 1.2rem;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: left;
             border: 1px solid #ccc;
@@ -126,10 +140,14 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header con elementos alineados -->
     <header>
-        <button onclick="irAHome()">Inicio</button>
+        <div class="logo-container">
+            <img src="logo.jpg" alt="Logo Automotriz Los Amigos" class="logo">
+            <button onclick="irAHome()">Inicio</button>
+        </div>
         <h1>Automotriz Los Amigos</h1>
         <div>
             <button onclick="irAPerfil()">Perfil</button>
@@ -147,11 +165,11 @@
                 <h3>Filtros</h3>
                 <label for="nombre">Filtrar por:</label>
                 <input type="text" name="nombre" id="nombre" placeholder="Clave, Apellido o Correo.">
-                
+
                 <label for="fecha">Fecha:</label>
                 <input type="month" name="mes" id="mes">
             </div>
-            
+
             <!-- Tablas de datos -->
             <div class="table-scroll">
                 <!-- Tabla 1 -->
@@ -164,7 +182,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <p><strong>Estado:</strong> En deuda (AQUÍ PONDREMOS UNA VARIABLE Q VAYA DEJANDO EL RESTANTE)</p>
+                                <p><strong>Estado:</strong> En deuda (AQUÍ PONDREMOS UNA VARIABLE Q VAYA DEJANDO EL
+                                    RESTANTE)</p>
                                 <p><strong>Método:</strong> Contado</p>
                                 <p><strong>Fecha:</strong> 2024-10-22</p>
                                 <p><strong>Monto:</strong> $170,000</p>
@@ -189,7 +208,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <p><strong>Estado:</strong> En deuda (AQUÍ PONDREMOS UNA VARIABLE Q VAYA DEJANDO EL RESTANTE)</p>
+                                <p><strong>Estado:</strong> En deuda (AQUÍ PONDREMOS UNA VARIABLE Q VAYA DEJANDO EL
+                                    RESTANTE)</p>
                                 <p><strong>Método:</strong> Contado</p>
                                 <p><strong>Fecha:</strong> 2014-06-15</p>
                                 <p><strong>Monto:</strong> $9,000,000</p>
@@ -206,9 +226,24 @@
             </div>
         </section>
     </main>
+    <script>
+    function irAHome() {
+        window.location.href = 'home.html'; // Cambia a la ruta de tu página de inicio
+    }
 
+    function irAPerfil() {
+        window.location.href = 'perfil.html'; // Cambia a tu página de perfil
+    }
+
+    function cerrarSesion() {
+        // Aquí puedes agregar la lógica para cerrar sesión
+        alert('Sesión cerrada'); // Mensaje temporal
+        window.location.href = 'login.html'; // Cambia a la ruta de tu página de inicio de sesión
+    }
+    </script>
     <footer>
         <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>

@@ -27,6 +27,17 @@
             color: white;
         }
 
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            height: 84px;
+            width: auto;
+        }
+
         header h1 {
             margin: 0;
             font-size: 1.8rem;
@@ -160,7 +171,10 @@
 </head>
 <body>
     <header>
-        <button onclick="irAHome()">Inicio</button>
+        <div class="header-left">
+            <img src="logo.jpg" alt="Logo Automotriz Los Amigos" class="logo">
+            <button onclick="irAHome()">Inicio</button>
+        </div>
         <h1>Automotriz Los Amigos</h1>
         <div>
             <button onclick="irAPerfil()">Mi Perfil</button>

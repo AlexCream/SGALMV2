@@ -23,6 +23,15 @@
       padding: 20px;
       text-align: center;
       border-bottom: 3px solid var(--main-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      height: 84px;
+      width: auto;
     }
 
     header h1 {
@@ -110,12 +119,22 @@
       .form-column {
         width: 100%;
       }
+      
+      header {
+        flex-direction: column;
+        padding: 15px;
+      }
+      
+      .logo {
+        height: 60px;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
+    <img src="logo.jpg" alt="Logo Automotriz Los Amigos" class="logo">
     <h1>Automotriz Los Amigos</h1>
   </header>
 
