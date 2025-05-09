@@ -1,14 +1,14 @@
 <?php
 $servidor = "localhost";
-$usuario = "Eliminador";
-$pass = "admin";
+$usuario = "admin";
+$pass = "1A2B3C";
 $bd = "automotriz_LA";
 
-$conexion = new mysqli($servidor, $usuario, $pass, $bd);
+$conexionEliminacion = new mysqli($servidor, $usuario, $pass, $bd);
 
-if ($conexion->connect_error) {
-    die("Error de conexion: " . $conexion->connect_error);
+if ($conexionEliminacion->connect_error) {
+    die("Error de conexion: " . $conexionEliminacion->connect_error);
 }
 
-$conexion ->set_charset("utf8mb4"); // Establecer el conjunto de caracteres a utf8mb4
+$conexionEliminacion ->set_charset("utf8mb4"); // Establecer el conjunto de caracteres a utf8mb4
 ?>

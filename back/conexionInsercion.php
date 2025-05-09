@@ -1,14 +1,14 @@
 <?php
 $servidor = "localhost";
-$usuario = "Insertador";
-$pass = "admin";
+$usuario = "root";
+$pass = "1A2B3C";
 $bd = "automotriz_LA";
 
-$conexion = new mysqli($servidor, $usuario, $pass, $bd);
+$conexionInsercion = new mysqli($servidor, $usuario, $pass, $bd);
 
-if ($conexion->connect_error) {
-    die("Error de conexion: " . $conexion->connect_error);
+if ($conexionInsercion->connect_error) {
+    die("Error de conexion: " . $conexionInsercion->connect_error);
 }
 
-$conexion ->set_charset("utf8mb4"); // Establecer el conjunto de caracteres a utf8mb4
+$conexionInsercion ->set_charset("utf8mb4"); // Establecer el conjunto de caracteres a utf8mb4
 ?>

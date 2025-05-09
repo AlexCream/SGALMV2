@@ -1,6 +1,6 @@
 <?php
 //Settings de la conexion pibes
-require_once __DIR__ . '/includes/conexion.php';
+include("conexionInsercion.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //Validacion de campos not nulls.
@@ -26,17 +26,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     //limpiar los datos de entrada
-    $nombre = $conexion->real_escape_string(trim($_POST['nombre']));
-    $apellidos = $conexion->real_escape_string((trim($_POST['apellidos'])));
-    $direccion = $conexion->real_escape_string(trim($_POST['direccion']));
-    $telefono_principal = $conexion->real_escape_string(trim($_POST['telefono_principal']));
-    $telefono_secundario = $conexion->real_escape_string(trim($_POST['telefono_secundario']));
-    $email = $conexion->real_escape_string(trim($_POST['email']));
+    $nombre = $conexionInsercion->real_escape_string(trim($_POST['nombre']));
+    $apellidos = $conexionInsercion->real_escape_string((trim($_POST['apellidos'])));
+    $direccion = $conexionInsercion->real_escape_string(trim($_POST['direccion']));
+    $telefono_principal = $conexionInsercion->real_escape_string(trim($_POST['telefono_principal']));
+    $telefono_secundario = $conexionInsercion->real_escape_string(trim($_POST['telefono_secundario']));
+    $email = $conexionInsercion->real_escape_string(trim($_POST['email']));
     $contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
-
+    $token = bin2hex(random_bytes(16));
+    $validado = 0;
 
     //Verificar que el correo ya existe en los registros.
-    $verificarEmail = $conexion->query("SELECT id FROM clientes where email = '$email'");
+    $verificarEmail = $conexionInsercion->query("SELECT id FROM clientes where email = '$email'");
 
     if ($verificarEmail->num_rows > 0) {
         die("El correo electronico ya esta registrado!!");
@@ -44,8 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //Insertar con la setencias de preapred statement.
 
-    $stmt = $conexion->prepare("INSERT INTO clientes (nombre,apellidos, direccion,
-    telefono_principal,telefono_secundario,email,contrasena) VALUES (?,?,?,?,?,?,?)");
+    $stmt = $conexionInsercion->prepare("INSERT INTO clientes (nombre,apellidos, direccion,
+    telefono_principal,telefono_secundario,email,contrasena,token,validado) VALUES (?,?,?,?,?,?,?,?,?)");
 
     $stmt->bind_param(
         "sssssss",
@@ -55,19 +56,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $telefono_principal,
         $telefono_secundario,
         $email,
-        $contrasena
+        $contrasena,
+        $token,
+        false
     );
 
-    if ($stmt->execute()) {
-        //Pagina para confirmar el registro exitoso.
-        header('Location: registro_exitoso.html');
-        exit;
+    $stmt->execute();
 
-    } else {
-        die("Error al registrar el usuario: " . $stmt->error);
+/*    if ($stmt->execute()) {
+            $link = "http://tusitio.com/confirmar.php?token=$token";
+            $asunto = "Confirma tu cuenta";
+            $mensaje = "Hola $nombre,\n\nGracias por registrarte.\n\nHaz clic en este enlace para confirmar tu cuenta:\n$link\n\nSi no fuiste tú, ignora este mensaje.";
+            $cabeceras = "From: no-reply@tusitio.com";
+
+            if (mail($email, $asunto, $mensaje, $cabeceras)) {
+                header('Location: registro_exitoso.html');
+                exit;
+            } else {
+                die("Error al enviar el correo de confirmación.");
+            }
+
+        } else {
+            die("Error al registrar el usuario: " . $stmt->error);
+        }
+
+        $stmt->close();
+        $conexion->close();
+    */
     }
-
-
-}
 
 ?>
