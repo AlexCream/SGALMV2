@@ -1,0 +1,163 @@
+
+:root {
+    --main-color: #dc3545;
+    --secondary-color: #343a40;
+}
+
+body {
+    background: #f1f3f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, var(--secondary-color), #000);
+    border-bottom: 3px solid var(--main-color);
+    color: white;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    height: 84px;
+    width: auto;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+header button {
+    background: var(--main-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-left: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+header button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+main {
+    padding: 20px 30px;
+}
+
+h2 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-box input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.search-box button {
+    background: var(--main-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+}
+
+.table-scroll {
+    overflow-x: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1000px;
+}
+
+thead {
+    background: var(--secondary-color);
+    color: white;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.btn-baja {
+    background: var(--main-color);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-baja:hover {
+    background: #c82333;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background: var(--main-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.pagination span {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #dee2e6;
+    margin-top: 30px;
+    font-size: 0.9rem;
+}
