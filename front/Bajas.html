@@ -119,9 +119,17 @@
             }
         }
 
-        function irAHome() { alert("Redirigiendo al inicio"); }
+       
+        function irAHome() {
+            window.location.href = '../index.html'; 
+        }
+    
+        function irAPerfil() {
+            window.location.href = "../front/perfil.html";
+          }
+
         function cerrarSesion() { alert("Sesión cerrada"); }
-        function irAPerfil() { alert("Redirigiendo a perfil"); }
+      
 
         cargarTabla();
     </script>

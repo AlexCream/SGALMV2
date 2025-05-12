@@ -5,6 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ventas - Automotriz Los Amigos</title>
   <link rel="stylesheet" href="ventas.css">
+  <style>
+    /* Estilos adicionales para los filtros */
+    .filtros {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+    
+    .filtros div {
+      flex-grow: 1;
+    }
+    
+    .filtros button {
+      padding: 8px 20px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      height: fit-content;
+    }
+    
+    .filtros button:hover {
+      background-color: #1a252f;
+    }
+    
+    input[type="text"], input[type="month"] {
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  </style>
 </head>
 <body>
 
@@ -23,21 +57,30 @@
   <main>
     <h2>Ventas</h2>
 
-    <!-- Filtros -->
+    <!-- Filtros mejorados -->
     <div class="filtros">
       <div>
         <label for="nombre">Filtrar por:</label><br>
-        <input type="text" name="nombre" id="nombre" placeholder="Clave, Apellido o Correo.">
+        <input type="text" name="nombre" id="nombre" placeholder="Clave, Apellido o Correo">
       </div>
       <div>
         <label for="mes">Fecha:</label><br>
         <input type="month" name="mes" id="mes">
       </div>
-      
+      <div>
+        <label for="estado">Estado:</label><br>
+        <select id="estado" name="estado">
+          <option value="">Todos</option>
+          <option value="pagado">Pagado</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="cancelado">Cancelado</option>
+        </select>
+      </div>
+      <button onclick="aplicarFiltros()">Aplicar Filtros</button>
     </div>
 
     <!-- Tabla 1 -->
-    <table>
+    <table class="tabla-venta">
       <caption>Toyota Corolla</caption>
       <tr>
         <th>Información del Pago</th>
@@ -60,7 +103,7 @@
     </table>
 
     <!-- Tabla 2 -->
-    <table>
+    <table class="tabla-venta">
       <caption>Chevy Pop</caption>
       <tr>
         <th>Información del Pago</th>
@@ -93,11 +136,65 @@
     }
 
     function irAPerfil() {
-      alert("Redirigiendo a tu perfil...");
+      window.location.href = "../front/perfil.html";
     }
 
     function cerrarSesion() {
       alert("Sesión cerrada correctamente.");
+    }
+    
+    function aplicarFiltros() {
+      // Obtener valores de los filtros
+      const filtroTexto = document.getElementById('nombre').value.toLowerCase();
+      const filtroMes = document.getElementById('mes').value;
+      const filtroEstado = document.getElementById('estado').value;
+      
+      // Obtener todas las tablas de ventas
+      const tablas = document.querySelectorAll('.tabla-venta');
+      
+      tablas.forEach(tabla => {
+        let mostrar = true;
+        const filas = tabla.querySelectorAll('tr');
+        
+        // Verificar filtro de texto
+        if (filtroTexto) {
+          const contenido = tabla.textContent.toLowerCase();
+          if (!contenido.includes(filtroTexto)) {
+            mostrar = false;
+          }
+        }
+        
+        // Verificar filtro de mes
+        if (filtroMes) {
+          const fechaTabla = tabla.querySelector('strong:contains("Fecha")')?.nextSibling?.textContent.trim();
+          if (fechaTabla && !fechaTabla.startsWith(filtroMes.substring(0, 7))) {
+            mostrar = false;
+          }
+        }
+        
+        // Verificar filtro de estado
+        if (filtroEstado) {
+          const estadoTabla = tabla.querySelector('strong:contains("Estado")')?.nextSibling?.textContent.toLowerCase();
+          if (estadoTabla && !estadoTabla.includes(filtroEstado)) {
+            mostrar = false;
+          }
+        }
+        
+        // Mostrar u ocultar tabla según los filtros
+        tabla.style.display = mostrar ? '' : 'none';
+      });
+      
+      alert("Filtros aplicados correctamente");
+    }
+    
+    // Polyfill para :contains (por si algunos navegadores no lo soportan)
+    if (!('contains' in document.querySelector('strong'))) {
+      document.querySelectorAll('strong').forEach(el => {
+        el.matches = el.matches || el.msMatchesSelector || el.webkitMatchesSelector;
+        el.contains = function(selector) {
+          return this.matches(selector);
+        };
+      });
     }
   </script>
 
