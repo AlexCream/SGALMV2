@@ -10,7 +10,11 @@
   <header>
     <div class="header-left">
       <img src="logo.jpg" alt="Logo Automotriz Los Amigos" class="logo">
-      <button onclick="irAHome()">Inicio</button>
+      <button onclick="window.location.href='../index.html'" >Inicio
+
+
+        
+      </button>
     </div>
     <h1>Automotriz Los Amigos</h1>
     <div>
@@ -33,7 +37,7 @@
 
       <div class="auto-card">
         <img src="front/challenger.jpg" alt="Challenger R/T 2019" />
-        <strong>Challenger R/T 2019</strong>
+        <strong>Challenger R/T 2019</strong>|
         <p>Precio: $540,000</p>
         <p>+12 Vendidos</p>
       </div>
@@ -52,9 +56,10 @@
   </footer>
 
   <script>
- function irAPerfil() {
-      alert("Redirigiendo a perfil");
+    function irAPerfil() {
+      window.location.href = "../front/perfil.html";
     }
+    
 
     function cerrarSesion() {
       alert("Sesión cerrada");
