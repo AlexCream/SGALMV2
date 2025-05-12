@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil - Automotriz Los Amigos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="modificardatos.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <img src="LOGO.jpg" alt="Logo" class="logo">
+            <h1>Automotriz Los Amigos</h1>
+        </div>
+        <div>
+            <button class="btn btn-primary" onclick="window.location.href='perfil.html'">
+                <i class="fas fa-arrow-left"></i> Cancelar
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="edit-section">
+            <div class="edit-header">
+                <h2><i class="fas fa-user-edit"></i> Editar Perfil</h2>
+            </div>
+
+            <div class="edit-content">
+                <div class="edit-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Juan+Perez&size=200&background=dc3545&color=fff"
+                        alt="Avatar del usuario" class="avatar">
+                    <button class="avatar-upload-btn"><i class="fas fa-camera"></i> Cambiar foto</button>
+                </div>
+
+                <form class="edit-form">
+                    <h3><i class="fas fa-id-card"></i> Información Personal</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre(s):</label>
+                            <input type="text" id="nombre" name="nombre" value="Juan Carlos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellido(s):</label>
+                            <input type="text" id="apellido" name="apellido" value="Pérez García" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fecha-nacimiento">Fecha de nacimiento:</label>
+                            <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" value="1990-03-15" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="genero">Género:</label>
+                            <select id="genero" name="genero" required>
+                                <option value="masculino" selected>Masculino</option>
+                                <option value="femenino">Femenino</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3><i class="fas fa-envelope"></i> Información de Contacto</h3>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" id="email" name="email" value="juan.perez@example.com" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefono">Teléfono:</label>
+                            <input type="tel" id="telefono" name="telefono" value="+52 55 1234 5678" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono-secundario">Teléfono secundario (opcional):</label>
+                            <input type="tel" id="telefono-secundario" name="telefono-secundario">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección:</label>
+                        <textarea id="direccion" name="direccion" rows="3">Calle Falsa 123, Col. Centro, CDMX, 06000</textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="window.location.href='perfil.html'">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Automotriz Los Amigos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.querySelector('.edit-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Los cambios se han guardado correctamente');
+            window.location.href = 'perfil.html';
+        });
+    </script>
+</body>
+
+</html>
