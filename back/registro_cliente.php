@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'apellidos',
         'direccion',
         'telefono_principal',
-        'email',
+        'correo',
         'contrasena',
         'confirmar_contrasena'
     ];
@@ -31,13 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $direccion = $conexionInsercion->real_escape_string(trim($_POST['direccion']));
     $telefono_principal = $conexionInsercion->real_escape_string(trim($_POST['telefono_principal']));
     $telefono_secundario = $conexionInsercion->real_escape_string(trim($_POST['telefono_secundario']));
-    $email = $conexionInsercion->real_escape_string(trim($_POST['email']));
+    $email = $conexionInsercion->real_escape_string(trim($_POST['correo']));
     $contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
     $token = bin2hex(random_bytes(16));
     $validado = 0;
 
     //Verificar que el correo ya existe en los registros.
-    $verificarEmail = $conexionInsercion->query("SELECT id FROM clientes where email = '$email'");
+    $verificarEmail = $conexionInsercion->query("SELECT USER_ID FROM USUARIOS where email = '$email'");
 
     if ($verificarEmail->num_rows > 0) {
         die("El correo electronico ya esta registrado!!");
@@ -45,11 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //Insertar con la setencias de preapred statement.
 
-    $stmt = $conexionInsercion->prepare("INSERT INTO clientes (nombre,apellidos, direccion,
-    telefono_principal,telefono_secundario,email,contrasena,token,validado) VALUES (?,?,?,?,?,?,?,?,?)");
+    $stmt = $conexionInsercion->prepare("INSERT INTO USUARIOS (ROL, NOMBRE, APELLIDO, DIRECCION,
+    TELEFONO1, TELEFONO2, EMAIL, PASS_HASH, VALIDADO, TOKEN) VALUES (?,?,?,?,?,?,?,?,?)");
 
     $stmt->bind_param(
         "sssssss",
+        1,
         $nombre,
         $apellidos,
         $direccion,
