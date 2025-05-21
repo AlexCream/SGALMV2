@@ -69,6 +69,7 @@ $types .= 'ii';
 // preparar la consulta
 $stmt = $conexionConsulta->prepare($sql);
 if (!$stmt) {
+    http_response_code(500);
     echo json_encode(["error" => $conexionConsulta->error]);
     exit;
 }
