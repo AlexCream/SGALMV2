@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json");
-include("conexiones/Consulta.php");
+include("conexiones/conexionConsulta.php");
 
 // llegada de filtros
 $clave_auto = $conexionConsulta -> real_escape_string($_POST['clave_auto'] ?? '');
