@@ -17,10 +17,6 @@ $inicia = ($pagina-1)*$limit;
 //saneacion del filtro
 $filtro = $conexionConsulta -> real_escape_string($filtro);
 
-//saneacion del inicio
-$filtro = $conexionConsulta -> real_escape_string($filtro);
-
-
 //creacion de la consulta de busqueda
 $sqlQry = "SELECT * FROM usuarios WHERE 
     USER_ID LIKE '%$filtro%' OR 
