@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Autos Más Vendidos - Automotriz Los Amigos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../front/catalogo.css" />
+
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <img src="logo.jpg" alt="Logo Automotriz Los Amigos" class="logo">
+      <button onclick="window.location.href='../index.html'">Inicio</button>
+    </div>
+    <h1>Automotriz Los Amigos</h1>
+    <div>
+      <button onclick="irAPerfil()">Mi Perfil</button>
+      <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+  </header>
+
+  <main>
+    <h2>Autos Más Vendidos</h2>
+    <p>Descubre los autos más populares entre nuestros clientes</p>
+
+    <!-- Filtros de búsqueda -->
+    <div class="filtros-container">
+      <div class="filtros-grid">
+        <div class="filtro-group">
+          <label for="marca">Marca</label>
+          <select id="marca">
+            <option value="">Todas las marcas</option>
+            <option value="honda">Honda</option>
+            <option value="dodge">Dodge</option>
+            <option value="jeep">Jeep</option>
+            <option value="toyota">Toyota</option>
+            <option value="nissan">Nissan</option>
+            <option value="chevrolet">Chevrolet</option>
+            <option value="ford">Ford</option>
+            <option value="mazda">Mazda</option>
+            <option value="subaru">Subaru</option>
+            <option value="hyundai">Hyundai</option>
+            <option value="kia">Kia</option>
+            <option value="volkswagen">Volkswagen</option>
+            <option value="gmc">GMC</option>
+            <option value="mitsubishi">Mitsubishi</option>
+          </select>
+        </div>
+        
+        <div class="filtro-group">
+          <label for="modelo">Modelo</label>
+          <input type="text" id="modelo" placeholder="Ej. Accord, Wrangler">
+        </div>
+        
+        <div class="filtro-group">
+          <label for="anio">Año</label>
+          <select id="anio">
+            <option value="">Todos los años</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+            <option value="2009">2009</option>
+            <option value="2008">2008</option>
+            <option value="2007">2007</option>
+            <option value="2006">2006</option>
+            <option value="2005">2005</option>
+            <option value="2004">2004</option>
+            <option value="2003">2003</option>
+            <option value="2002">2002</option>
+            <option value="2001">2001</option>
+            <option value="2000">2000</option>
+            <option value="1999">1999</option>
+            <option value="1998">1998</option>
+            <option value="1997">1997</option>
+            <option value="1996">1996</option>
+            <option value="1995">1995</option>
+          </select>
+        </div>
+        
+        <div class="filtro-group">
+          <label for="precio-min">Precio mínimo</label>
+          <input type="number" id="precio-min" placeholder="Mínimo">
+        </div>
+        
+        <div class="filtro-group">
+          <label for="precio-max">Precio máximo</label>
+          <input type="number" id="precio-max" placeholder="Máximo">
+        </div>
+        
+        <button class="btn-aplicar" onclick="filtrarAutos()">
+          Aplicar Filtros
+        </button>
+      </div>
+    </div>
+
+    <!-- Grilla de autos -->
+    <div class="autos-grid" id="autos-container">
+      <div class="auto-card" data-marca="honda" data-modelo="accord" data-anio="2019" data-precio="220000">
+        <img src="front/honda.jpg" alt="Honda Accord 2019" />
+        <strong>Honda Accord Sport 2019</strong>
+        <p>Precio: $220,000</p>
+        <p>+20 Vendidos</p> 
+      </div>
+
+      <div class="auto-card" data-marca="dodge" data-modelo="challenger" data-anio="2019" data-precio="540000">
+        <img src="front/challenger.jpg" alt="Challenger R/T 2019" />
+        <strong>Dodge Challenger R/T 2019</strong>
+        <p>Precio: $540,000</p>
+        <p>+12 Vendidos</p>
+      </div>
+
+      <div class="auto-card" data-marca="jeep" data-modelo="wrangler" data-anio="2016" data-precio="390000">
+        <img src="front/jeep.jpg" alt="Jeep Wrangler 2016" />
+        <strong>Jeep Wrangler 2016</strong>
+        <p>Precio: $390,000</p>
+        <p>+40 Vendidos</p>
+      </div>
+      
+      <!-- Ejemplo de más autos para demostrar el filtrado -->
+      <div class="auto-card" data-marca="toyota" data-modelo="corolla" data-anio="2021" data-precio="280000">
+        <img src="https://via.placeholder.com/300x180?text=Toyota+Corolla" alt="Toyota Corolla 2021" />
+        <strong>Toyota Corolla 2021</strong>
+        <p>Precio: $280,000</p>
+        <p>+35 Vendidos</p>
+      </div>
+      
+      <div class="auto-card" data-marca="nissan" data-modelo="sentra" data-anio="2020" data-precio="250000">
+        <img src="https://via.placeholder.com/300x180?text=Nissan+Sentra" alt="Nissan Sentra 2020" />
+        <strong>Nissan Sentra 2020</strong>
+        <p>Precio: $250,000</p>
+        <p>+28 Vendidos</p>
+      </div>
+      
+      <div class="auto-card" data-marca="chevrolet" data-modelo="camaro" data-anio="2018" data-precio="450000">
+        <img src="https://via.placeholder.com/300x180?text=Chevrolet+Camaro" alt="Chevrolet Camaro 2018" />
+        <strong>Chevrolet Camaro 2018</strong>
+        <p>Precio: $450,000</p>
+        <p>+18 Vendidos</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function irAPerfil() {
+      window.location.href = "../front/perfil.html";
+    }
+    
+    function cerrarSesion() {
+      alert("Sesión cerrada");
+    }
+    
+    function filtrarAutos() {
+      // Obtener valores de los filtros
+      const marca = document.getElementById('marca').value.toLowerCase();
+      const modelo = document.getElementById('modelo').value.toLowerCase();
+      const anio = document.getElementById('anio').value;
+      const precioMin = document.getElementById('precio-min').value;
+      const precioMax = document.getElementById('precio-max').value;
+      
+      // Obtener todos los autos
+      const autos = document.querySelectorAll('.auto-card');
+      
+      // Filtrar autos
+      autos.forEach(auto => {
+        const autoMarca = auto.dataset.marca;
+        const autoModelo = auto.dataset.modelo;
+        const autoAnio = auto.dataset.anio;
+        const autoPrecio = parseInt(auto.dataset.precio);
+        
+        // Aplicar filtros
+        const cumpleMarca = !marca || autoMarca.includes(marca);
+        const cumpleModelo = !modelo || autoModelo.includes(modelo);
+        const cumpleAnio = !anio || autoAnio === anio;
+        const cumplePrecioMin = !precioMin || autoPrecio >= parseInt(precioMin);
+        const cumplePrecioMax = !precioMax || autoPrecio <= parseInt(precioMax);
+        
+        // Mostrar u ocultar según los filtros
+        if (cumpleMarca && cumpleModelo && cumpleAnio && cumplePrecioMin && cumplePrecioMax) {
+          auto.style.display = 'block';
+        } else {
+          auto.style.display = 'none';
+        }
+      });
+    }
+    
+    // Filtrar automáticamente al cambiar los inputs
+    document.querySelectorAll('.filtro-group input, .filtro-group select').forEach(input => {
+      input.addEventListener('change', filtrarAutos);
+    });
+  </script>
+</body>
+</html>

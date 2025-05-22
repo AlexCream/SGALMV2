@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automotriz Los Amigos - Subir Documentos</title>
+  <link rel="stylesheet" href="subirDoc.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <img src="logo.jpg" alt="Logo Automotriz Los Amigos" class="logo">
+      <button onclick="irAHome()">Inicio</button>
+    </div>
+    <h1>Automotriz Los Amigos</h1>
+    <div>
+      <button onclick="irAPerfil()">Mi Perfil</button>
+      <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+  </header>
+
+  <main>
+    <h2>Subir Documentación</h2>
+    <form id="formDocumentos" onsubmit="subirDocumentos(event)">
+      <!-- Identificación Oficial -->
+      <div class="form-section">
+        <h3>Identificación Oficial</h3>
+        <input type="file" id="identificacion" accept=".pdf,.jpg,.png" required />
+        <p>Formatos aceptados: PDF, JPG, PNG (Máx. 5MB)</p>
+      </div>
+
+      <!-- Comprobante de Domicilio -->
+      <div class="form-section">
+        <h3>Comprobante de Domicilio</h3>
+        <input type="file" id="domicilio" accept=".pdf,.jpg,.png" required />
+        <p>Formatos aceptados: PDF, JPG, PNG (Máx. 5MB)</p>
+      </div>
+
+      <!-- Botón de envío -->
+      <div style="text-align: center;">
+        <button type="submit">Subir Documentos</button>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function irAHome() {
+      window.location.href = '../index.html'; 
+  }
+
+  function irAPerfil() {
+      window.location.href = "../front/perfil.html";
+    }
+
+    function cerrarSesion() {
+      alert("Sesión cerrada");
+    }
+
+    function subirDocumentos(e) {
+      e.preventDefault();
+      const idFile = document.getElementById('identificacion').files[0];
+      const domFile = document.getElementById('domicilio').files[0];
+
+      if (idFile.size > 5 * 1024 * 1024 || domFile.size > 5 * 1024 * 1024) {
+        alert("Los archivos no deben superar los 5MB.");
+        return;
+      }
+
+      alert("Documentos subidos correctamente.");
+    }
+  </script>
+
+</body>
+</html>

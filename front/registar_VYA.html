@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuario - Automotriz Los Amigos</title>
+  <link rel="stylesheet" href="vya.css">
+</head>
+
+<body>
+  <header>
+    <div class="header-left">
+      <img src="logo.jpg" alt="Logo Automotriz Los Amigos" class="logo">
+      <button onclick="window.location.href='../index.html'">Inicio</button>
+
+    </div>
+    <h1>Automotriz Los Amigos</h1>
+    <div>
+      <button onclick="irAPerfil()">Perfil</button>
+      <button onclick="cerrarSesion()">Salir</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="registro-container">
+      <h2>Registro de Nuevo Usuario</h2>
+      <form id="registroForm" class="form-grid">
+        <!-- Sección 1: Datos personales -->
+        <div class="form-section">
+          <h3>Información Personal</h3>
+          <div class="form-group">
+            <label for="nombre">Nombre(s):</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+
+          <div class="form-group">
+            <label for="apellido">Apellido(s):</label>
+            <input type="text" id="apellido" name="apellido" required>
+          </div>
+
+          <div class="form-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required>
+          </div>
+        </div>
+
+        <!-- Sección 2: Contacto -->
+        <div class="form-section">
+          <h3>Información de Contacto</h3>
+          <div class="form-group">
+            <label for="telefono1">Teléfono principal:</label>
+            <input type="tel" id="telefono1" name="telefono1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="telefono2">Teléfono secundario (opcional):</label>
+            <input type="tel" id="telefono2" name="telefono2">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+        </div>
+
+        <!-- Sección 3: Datos de acceso -->
+        <div class="form-section">
+          <h3>Datos de Acceso</h3>
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required minlength="8">
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirmar contraseña:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required minlength="8">
+          </div>
+
+          <div class="form-group">
+            <label>Tipo de usuario:</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="tipoVendedor" name="tipoUsuario" value="vendedor" checked>
+                <label for="tipoVendedor">Vendedor</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="tipoAdmin" name="tipoUsuario" value="admin">
+                <label for="tipoAdmin">Administrador</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="form-actions">
+          <button type="submit" class="btn-registrar">Registrar </button>
+          <button type="button" class="btn-cancelar" onclick="cancelarRegistro()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Funciones de navegación
+    function irAPerfil() {
+      window.location.href = 'perfil.html';
+    }
+
+    function cerrarSesion() {
+      if (confirm('¿Está seguro que desea cerrar sesión?')) {
+        alert('Sesión cerrada correctamente');
+        window.location.href = 'login.html';
+      }
+    }
+
+    function cancelarRegistro() {
+      if (confirm('¿Está seguro que desea cancelar el registro?')) {
+        window.location.href = 'usuarios.html';
+      }
+    }
+
+    // Validación del formulario
+    document.getElementById('registroForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Validar que las contraseñas coincidan
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert('Las contraseñas no coinciden');
+        return;
+      }
+
+      // Simular registro exitoso
+      alert('Usuario registrado correctamente');
+
+      // Aquí iría la lógica para enviar los datos al servidor
+      // this.submit(); // Descomentar para enviar el formulario
+
+      // Redirigir después de registrar
+      setTimeout(() => {
+        window.location.href = 'usuarios.html';
+      }, 1000);
+    });
+  </script>
+</body>
+
+</html>
