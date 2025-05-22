@@ -1,7 +1,7 @@
 <?php
     header('Content-Type: application/json; charset=utf-8');
-    include("conexiones/conexionInsercion.php");
-    include("conexiones/conexionConsulta.php");
+    include("../../sql/conexionInsercion.php");
+    include("../../sql/conexionConsulta.php");
     
     //informacion de rol
     $rol = isset($_POST['rol']) ? intval($_POST['rol']) : null;

@@ -1,7 +1,7 @@
 <?php
 //Settings de la conexion pibes
-    include("conexionInsercion.php");
-    require __DIR__ . '/vendor/autoload.php'; // Ajusta la ruta si estás en un subdirectorio
+    include("../sql/conexionInsercion.php");
+    require __DIR__ . '../vendor/autoload.php';
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;

@@ -1,6 +1,6 @@
 <?php
     header("Content-Type: application/json");
-    include("conexionConsulta.php");
+    include("../../conexionConsulta.php");
 
     //LLEGADA D ELOS FILTROS DE PALABRA Y MES
     $filtro = isset($_POST["filtro"]) ? trim($_POST["filtro"]) : "";

@@ -1,5 +1,5 @@
 <?php
-    include("conexionConsulta.php");
+    include("../sql/conexionConsulta.php");
 
     $token = $_GET['token'] ?? '';
 
