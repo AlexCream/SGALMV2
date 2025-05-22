@@ -3,7 +3,7 @@
         'name' => 'alcog/back',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'bb8f12930f155bf6fc58c07fb16c9bec92bae538',
+        'reference' => 'cd0d789e3fb6196df97c118f009e5b0e03c1ed06',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'alcog/back' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'bb8f12930f155bf6fc58c07fb16c9bec92bae538',
+            'reference' => 'cd0d789e3fb6196df97c118f009e5b0e03c1ed06',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
