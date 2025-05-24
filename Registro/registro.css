@@ -12,7 +12,7 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, var(--secondary-color), #000);
+  background: linear-gradient(135deg, #000, var(--secondary-color));
   color: white;
   padding: 20px;
   text-align: center;
@@ -24,7 +24,7 @@ header {
 }
 
 .logo {
-  height: 84px;
+  height: 120px;
   width: auto;
 }
 
@@ -95,6 +95,26 @@ button[type="submit"]:hover {
   background-color: #c82333;
   transform: translateY(-2px);
 }
+ /* Link styles */
+ 
+  .login-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #6c757d;
+      font-size: 0.95rem;
+  }
+
+  .login-link a {
+      color: var(--primary-color);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s;
+  }
+
+  .login-link a:hover {
+      color: #c82333;
+      text-decoration: underline;
+  }
 
 footer {
   text-align: center;
