@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Automotriz Los Amigos - Citas Pendientes</title>
+<link rel="stylesheet" href="citasP.css">
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <img src="logo.jpg" alt="Logo Automotriz Los Amigos" class="logo">
+      <button onclick="irAInicio()">Inicio</button>
+    </div>
+    <h1>Automotriz Los Amigos</h1>
+    <div>
+      <button onclick="irAPerfil()">Mi Perfil</button>
+      <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Mostrar Citas Pendientes</h2>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Teléfono</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td>Gustavo Fring</td>
+              <td>Fring@example.com</td>
+              <td>723432</td>
+              <td>07/04/2025</td>
+              <td>11:00 AM</td>
+              <td>
+                <button class="btn-action" onclick="modificarCita('01')">Modificar</button>
+                <button class="btn-action" onclick="cancelarCita('01')">Cancelar</button>
+              </td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>Juan Godoy</td>
+              <td>Godoy@example.com</td>
+              <td>723432</td>
+              <td>02/02/2025</td>
+              <td>12:30 PM</td>
+              <td>
+                <button class="btn-action" onclick="modificarCita('02')">Modificar</button>
+                <button class="btn-action" onclick="cancelarCita('02')">Cancelar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function irAInicio() {
+      alert("Redirigiendo al inicio");
+    }
+
+    function modificarCita(id) {
+      alert(`Modificar cita con ID: ${id}`);
+    }
+
+    function cancelarCita(id) {
+      if (confirm(`¿Cancelar cita ${id}?`)) {
+        alert(`Cita ${id} cancelada`);
+      }
+    }
+
+    function cerrarSesion() {
+      alert("Sesión cerrada");
+    }
+
+    function irAPerfil() {
+      alert("Redirigiendo a perfil");
+    }
+  </script>
+</body>
+</html>

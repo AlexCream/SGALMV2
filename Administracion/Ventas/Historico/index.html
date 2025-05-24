@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ventas - Automotriz Los Amigos</title>
+  <link rel="stylesheet" href="ventas.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <img src="logo.jpg" alt="Logo Automotriz Los Amigos" class="logo">
+      <button onclick="irAHome()">Inicio</button>
+    </div>
+    <h1>Automotriz Los Amigos</h1>
+    <div>
+      <button onclick="irAPerfil()">Perfil</button>
+      <button onclick="cerrarSesion()">Salir</button>
+    </div>
+  </header>
+
+  <main>
+    <h2>Ventas</h2>
+
+    <!-- Filtros -->
+    <div class="filtros">
+      <div>
+        <label for="nombre">Filtrar por:</label><br>
+        <input type="text" name="nombre" id="nombre" placeholder="Clave, Apellido o Correo.">
+      </div>
+      <div>
+        <label for="mes">Fecha:</label><br>
+        <input type="month" name="mes" id="mes">
+      </div>
+    </div>
+
+    <!-- Tabla 1 -->
+    <table>
+      <caption>Toyota Corolla</caption>
+      <tr>
+        <th>Información del Pago</th>
+        <th>Información del Cliente</th>
+      </tr>
+      <tr>
+        <td>
+          <p><strong>Estado:</strong> Pagado el 2024-10-22</p>
+          <p><strong>Método:</strong> Contado</p>
+          <p><strong>Fecha:</strong> 2024-10-22</p>
+          <p><strong>Monto:</strong> $170,000</p>
+        </td>
+        <td>
+          <p><strong>Nombre:</strong> Juan Barrera</p>
+          <p><strong>Teléfono:</strong> 5234234</p>
+          <p><strong>Correo:</strong> Juan@example.com</p>
+          <p><strong>Domicilio:</strong> Los Cabos</p>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Tabla 2 -->
+    <table>
+      <caption>Chevy Pop</caption>
+      <tr>
+        <th>Información del Pago</th>
+        <th>Información del Cliente</th>
+      </tr>
+      <tr>
+        <td>
+          <p><strong>Estado:</strong> Pagado el 2014-06-15</p>
+          <p><strong>Método:</strong> Contado</p>
+          <p><strong>Fecha:</strong> 2014-06-15</p>
+          <p><strong>Monto:</strong> $9,000,000</p>
+        </td>
+        <td>
+          <p><strong>Nombre:</strong> Gustavo Fring</p>
+          <p><strong>Teléfono:</strong> 234657</p>
+          <p><strong>Correo:</strong> Fring@example.com</p>
+          <p><strong>Domicilio:</strong> Albuquerque</p>
+        </td>
+      </tr>
+    </table>
+  </main>
+
+  <footer>
+    <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function irAHome() {
+      alert("Redirigiendo a Inicio...");
+    }
+
+    function irAPerfil() {
+      alert("Redirigiendo a tu perfil...");
+    }
+
+    function cerrarSesion() {
+      alert("Sesión cerrada correctamente.");
+    }
+  </script>
+
+</body>
+</html>
