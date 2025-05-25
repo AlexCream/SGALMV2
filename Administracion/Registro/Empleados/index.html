@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../js/jquery-3.7.1.js">
+    <link rel="stylesheet" href="../../../js/bootstrap.min.js">
+    <link rel="stylesheet" href="registrarVYA.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <img src="../../../images/LOGO.jpg" alt="Logo" class="logo">
+            <h1>Registro de Usuario</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>Registrar Vendedor / Administrador</h2>
+            <form id="registroForm" action="procesar_registro.php" method="POST" novalidate>
+                <div class="form-grid">
+                    <div>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
+                            title="Solo letras y espacios">
+                    </div>
+
+                    <div>
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" id="apellidos" name="apellidos" required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+"
+                            title="Solo letras y espacios">
+                    </div>
+
+                    <div>
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccion" name="direccion" required minlength="5">
+                    </div>
+
+                    <div>
+                        <label for="telefono1">Teléfono principal</label>
+                        <input type="tel" id="telefono1" name="telefono1" required pattern="[0-9]{10}"
+                            title="10 dígitos numéricos">
+                    </div>
+
+                    <div>
+                        <label for="telefono2">Teléfono secundario</label>
+                        <input type="tel" id="telefono2" name="telefono2" pattern="[0-9]{10}"
+                            title="10 dígitos numéricos">
+                    </div>
+
+                    <div>
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" required>
+                    </div>
+
+                    <div>
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" required minlength="6">
+                    </div>
+
+                    <div>
+                        <label for="confirmar">Confirmar contraseña</label>
+                        <input type="password" id="confirmar" name="confirmar" required minlength="6">
+                    </div>
+
+                    <!-- Selector de rol con mejor diseño -->
+                    <div class="rol-selector">
+                        <label for="rol">Tipo de usuario</label>
+                        <select id="rol" name="rol" required>
+                            <option value="" disabled selected>Seleccione el tipo de usuario</option>
+                            <option value="vendedor">Vendedor</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="errorMensaje" class="error"></div>
+
+                <button type="submit">Registrar Usuario</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 Automotriz Los Amigos. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        const form = document.getElementById('registroForm');
+        const errorDiv = document.getElementById('errorMensaje');
+
+        form.addEventListener('submit', function (e) {
+            errorDiv.textContent = '';
+            const password = form.password.value.trim();
+            const confirmar = form.confirmar.value.trim();
+            const rol = form.rol.value;
+
+            if (password !== confirmar) {
+                e.preventDefault();
+                errorDiv.textContent = 'Las contraseñas no coinciden.';
+                return;
+            }
+
+            if (!rol) {
+                e.preventDefault();
+                errorDiv.textContent = 'Por favor seleccione un tipo de usuario.';
+                return;
+            }
+
+            // Sanitizar inputs
+            const inputs = form.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                if (input.type !== 'select-one') {
+                    input.value = input.value.replace(/<|>|"|'/g, '').trim();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

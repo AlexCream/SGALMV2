@@ -4,17 +4,19 @@
   <meta charset="UTF-8" />
   <title>Autos Más Vendidos - Automotriz Los Amigos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="catalogo.css">
+  <link rel="stylesheet" href="catalogo.css" />
 </head>
 <body>
   <header>
     <div class="header-left">
-      <img src="images/LOGO.jpg" alt="Logo Automotriz Los Amigos" class="logo">
-      <button onclick="irAHome()">Inicio</button>
+      <img src="logo/LOGO.jpg" alt="Logo Automotriz Los Amigos" class="logo">
+      <button onclick="window.location.href='index.html'">Inicio</button>
     </div>
     <h1>Automotriz Los Amigos</h1>
     <div>
+      <button onclick="window.location.href='AUTOS.html'">Registrar Autos</button>
       <button onclick="irAPerfil()">Mi Perfil</button>
+      <button onclick="agendarCita()">Agendar Cita</button> 
       <button onclick="cerrarSesion()">Cerrar Sesión</button>
     </div>
   </header>
@@ -23,28 +25,99 @@
     <h2>Autos Más Vendidos</h2>
     <p>Descubre los autos más populares entre nuestros clientes</p>
 
-    <div class="autos-grid">
-      <div class="auto-card">
-        <img src="imgAutos/honda.jpg" alt="Honda Accord 2019" />
-        <strong>Honda Accord Sport 2019</strong>
-        <p>Precio: $220,000</p>
-        <p>+20 Vendidos</p> 
-      </div>
+    <!-- Filtros de búsqueda -->
+    <div class="filtros-container">
+      <div class="filtros-grid">
+        <div class="filtro-group">
+          <label for="marca">Marca</label>
+          <select id="marca">
+            <option value="">Todas las marcas</option>
+            <option value="honda">Honda</option>
+            <option value="dodge">Dodge</option>
+            <option value="jeep">Jeep</option>
+            <option value="toyota">Toyota</option>
+            <option value="nissan">Nissan</option>
+            <option value="chevrolet">Chevrolet</option>
+            <option value="ford">Ford</option>
+            <option value="mazda">Mazda</option>
+            <option value="subaru">Subaru</option>
+            <option value="hyundai">Hyundai</option>
+            <option value="kia">Kia</option>
+            <option value="volkswagen">Volkswagen</option>
+            <option value="gmc">GMC</option>
+            <option value="mitsubishi">Mitsubishi</option>
+          </select>
+        </div>
+        
+        <div class="filtro-group">
+          <label for="modelo">Modelo</label>
+          <input type="text" id="modelo" placeholder="Ej. Accord, Wrangler">
+        </div>
+        
+        <div class="filtro-group">
+          <label for="anio">Año</label>
+          <select id="anio">
+            <option value="">Todos los años</option>
+            <option value="1995">1995</option>
+            <option value="1996">1996</option>
+            <option value="1997">1997</option>
+            <option value="1998">1998</option>
+            <option value="1999">1999</option>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+          </select>
+        </div>
+        
+        <div class="price-slider-container">
+          <div class="price-slider-group">
+            <label>Rango de precios</label>
+            <div class="slider-container">
+              <div class="slider-track"></div>
+              <div class="slider-range" id="slider-range"></div>
+              <input type="range" min="0" max="1000000" value="0" step="10000" class="slider-min" id="slider-min">
+              <input type="range" min="0" max="1000000" value="1000000" step="10000" class="slider-max" id="slider-max">
+            </div>
+            <div class="price-inputs">
+              <input type="number" id="precio-min" placeholder="Mínimo" min="0" max="1000000" value="0">
+              <input type="number" id="precio-max" placeholder="Máximo" min="0" max="1000000" value="1000000">
+            </div>
+          </div>
+        </div>
 
-      <div class="auto-card">
-        <img src="imgAutos/challenger.jpg" alt="Challenger R/T 2019" />
-        <strong>Challenger R/T 2019</strong>
-        <p>Precio: $540,000</p>
-        <p>+12 Vendidos</p>
-      </div>
-
-      <div class="auto-card">
-        <img src="imgAutos/jeep.jpg" alt="Jeep Wrangler 2016" />
-        <strong>Jeep Wrangler 2016</strong>
-        <p>Precio: $390,000</p>
-        <p>+40 Vendidos</p>
+        <button class="btn-aplicar" onclick="filtrarAutos()">
+          Aplicar Filtros
+        </button>
       </div>
     </div>
+
+    <!-- Grilla de autos -->
+    <div class="autos-grid" id="autos-container"></div>
+
+    <!-- Paginación -->
+    <div class="pagination" id="pagination-container"></div>
   </main>
 
   <footer>
@@ -52,13 +125,232 @@
   </footer>
 
   <script>
- function irAPerfil() {
-      alert("Redirigiendo a perfil");
+    // Variables para la paginación
+    const autosPorPagina = 16;
+    let paginaActual = 1;
+    let autosFiltrados = [];
+
+    // Funciones de navegación
+    function irAPerfil() {
+      window.location.href = "../front/perfil.html";
+    }
+
+    function agendarCita() {
+      window.location.href = "agendar-cita.html";
     }
 
     function cerrarSesion() {
-      alert("Sesión cerrada");
+      window.location.href = "logout.php";
     }
+
+    // Función para cargar autos desde el servidor
+    async function cargarAutos() {
+      try {
+        const response = await fetch('obtener_autos.php');
+        const data = await response.json();
+        
+        if (!data.success) {
+          throw new Error(data.error || 'Error al cargar los autos');
+        }
+        
+        const contenedor = document.getElementById('autos-container');
+        contenedor.innerHTML = '';
+        
+        data.autos.forEach(auto => {
+          const card = document.createElement('div');
+          card.className = 'auto-card';
+          card.dataset.marca = auto.marca.toLowerCase();
+          card.dataset.modelo = auto.modelo.toLowerCase();
+          card.dataset.anio = auto.familia; // Asumiendo que familia contiene el año
+          card.dataset.precio = auto.precio_contado;
+          
+          card.innerHTML = `
+            <img src="imagenes_autos/${auto.id}.jpg" 
+                 onerror="this.src='https://via.placeholder.com/300x180?text=${encodeURIComponent(auto.marca + ' ' + auto.modelo)}'"
+                 alt="${auto.marca} ${auto.modelo}">
+            <strong>${auto.marca} ${auto.modelo}</strong>
+            <p>Precio: $${parseFloat(auto.precio_contado).toLocaleString('es-MX')}</p>
+            <p>${auto.ventas || 0} Vendidos</p>
+          `;
+          
+          // Redirigir a la página de detalles al hacer clic
+          card.addEventListener('click', () => {
+            window.location.href = `detalle_auto.php?id=${auto.id}`;
+          });
+          card.style.cursor = 'pointer';
+          
+          contenedor.appendChild(card);
+        });
+        
+        autosFiltrados = [...document.querySelectorAll('.auto-card')];
+        mostrarAutosPagina(1);
+        
+      } catch (error) {
+        console.error('Error:', error);
+        alert('No se pudieron cargar los autos: ' + error.message);
+      }
+    }
+
+    // Función para mostrar los autos de la página actual
+    function mostrarAutosPagina(pagina) {
+      const autosContainer = document.getElementById('autos-container');
+      const autos = autosContainer.querySelectorAll('.auto-card');
+      
+      // Ocultar todos los autos primero
+      autos.forEach(auto => {
+        auto.style.display = 'none';
+      });
+      
+      // Calcular índices para la paginación
+      const inicio = (pagina - 1) * autosPorPagina;
+      const fin = inicio + autosPorPagina;
+      
+      // Mostrar solo los autos de la página actual
+      for (let i = inicio; i < fin && i < autos.length; i++) {
+        if (autos[i]) {
+          autos[i].style.display = 'block';
+        }
+      }
+      
+      // Actualizar la paginación
+      actualizarPaginacion();
+    }
+
+    // Función para actualizar los controles de paginación
+    function actualizarPaginacion() {
+      const autosContainer = document.getElementById('autos-container');
+      const autos = autosContainer.querySelectorAll('.auto-card');
+      const totalPaginas = Math.ceil(autos.length / autosPorPagina);
+      const paginationContainer = document.getElementById('pagination-container');
+      
+      // Limpiar paginación existente
+      paginationContainer.innerHTML = '';
+      
+      // Botón Anterior
+      const btnAnterior = document.createElement('button');
+      btnAnterior.textContent = '«';
+      btnAnterior.disabled = paginaActual === 1;
+      btnAnterior.addEventListener('click', () => {
+        if (paginaActual > 1) {
+          paginaActual--;
+          mostrarAutosPagina(paginaActual);
+        }
+      });
+      paginationContainer.appendChild(btnAnterior);
+      
+      // Botones de páginas
+      const maxBotones = 5;
+      let inicioPaginas = Math.max(1, paginaActual - Math.floor(maxBotones / 2));
+      let finPaginas = Math.min(totalPaginas, inicioPaginas + maxBotones - 1);
+      
+      if (finPaginas - inicioPaginas + 1 < maxBotones) {
+        inicioPaginas = Math.max(1, finPaginas - maxBotones + 1);
+      }
+      
+      if (inicioPaginas > 1) {
+        const btnPrimera = document.createElement('button');
+        btnPrimera.textContent = '1';
+        btnPrimera.addEventListener('click', () => {
+          paginaActual = 1;
+          mostrarAutosPagina(paginaActual);
+        });
+        paginationContainer.appendChild(btnPrimera);
+        
+        if (inicioPaginas > 2) {
+          const puntos = document.createElement('span');
+          puntos.textContent = '...';
+          puntos.style.padding = '8px';
+          paginationContainer.appendChild(puntos);
+        }
+      }
+      
+      for (let i = inicioPaginas; i <= finPaginas; i++) {
+        const btnPagina = document.createElement('button');
+        btnPagina.textContent = i;
+        if (i === paginaActual) {
+          btnPagina.classList.add('active');
+        }
+        btnPagina.addEventListener('click', () => {
+          paginaActual = i;
+          mostrarAutosPagina(paginaActual);
+        });
+        paginationContainer.appendChild(btnPagina);
+      }
+      
+      if (finPaginas < totalPaginas) {
+        if (finPaginas < totalPaginas - 1) {
+          const puntos = document.createElement('span');
+          puntos.textContent = '...';
+          puntos.style.padding = '8px';
+          paginationContainer.appendChild(puntos);
+        }
+        
+        const btnUltima = document.createElement('button');
+        btnUltima.textContent = totalPaginas;
+        btnUltima.addEventListener('click', () => {
+          paginaActual = totalPaginas;
+          mostrarAutosPagina(paginaActual);
+        });
+        paginationContainer.appendChild(btnUltima);
+      }
+      
+      // Botón Siguiente
+      const btnSiguiente = document.createElement('button');
+      btnSiguiente.textContent = '»';
+      btnSiguiente.disabled = paginaActual === totalPaginas;
+      btnSiguiente.addEventListener('click', () => {
+        if (paginaActual < totalPaginas) {
+          paginaActual++;
+          mostrarAutosPagina(paginaActual);
+        }
+      });
+      paginationContainer.appendChild(btnSiguiente);
+    }
+
+    function filtrarAutos() {
+      const marca = document.getElementById('marca').value.toLowerCase();
+      const modelo = document.getElementById('modelo').value.toLowerCase();
+      const anio = document.getElementById('anio').value;
+      const precioMin = document.getElementById('precio-min').value;
+      const precioMax = document.getElementById('precio-max').value;
+
+      const autos = document.querySelectorAll('.auto-card');
+
+      autosFiltrados = [];
+      
+      autos.forEach(auto => {
+        const autoMarca = auto.dataset.marca;
+        const autoModelo = auto.dataset.modelo;
+        const autoAnio = auto.dataset.anio;
+        const autoPrecio = parseInt(auto.dataset.precio);
+
+        const cumpleMarca = !marca || autoMarca.includes(marca);
+        const cumpleModelo = !modelo || autoModelo.includes(modelo);
+        const cumpleAnio = !anio || autoAnio === anio;
+        const cumplePrecioMin = !precioMin || autoPrecio >= parseInt(precioMin);
+        const cumplePrecioMax = !precioMax || autoPrecio <= parseInt(precioMax);
+
+        if (cumpleMarca && cumpleModelo && cumpleAnio && cumplePrecioMin && cumplePrecioMax) {
+          auto.style.display = 'block';
+          autosFiltrados.push(auto);
+        } else {
+          auto.style.display = 'none';
+        }
+      });
+      
+      paginaActual = 1;
+      mostrarAutosPagina(paginaActual);
+    }
+
+    // Inicializar al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      cargarAutos();
+      
+      // Configurar eventos de filtros
+      document.querySelectorAll('.filtro-group input, .filtro-group select').forEach(input => {
+        input.addEventListener('change', filtrarAutos);
+      });
+    });
   </script>
 </body>
 </html>
