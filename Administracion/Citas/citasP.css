@@ -1,4 +1,3 @@
-
 :root {
   --main-color: #dc3545;
   --secondary-color: #343a40;
@@ -16,7 +15,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background: linear-gradient(135deg, var(--secondary-color), #000);
+  background: linear-gradient(135deg, #000, var(--secondary-color)); /* Degradado invertido */
   border-bottom: 3px solid var(--main-color);
   color: white;
 }
@@ -28,7 +27,7 @@ header {
 }
 
 .logo {
-  height: 84px; /* Tamaño de 84px como solicitaste */
+  height: 120px; /* Tamaño aumentado a 120px */
   width: auto;
 }
 
@@ -116,6 +115,10 @@ footer {
 
 @media (max-width: 768px) {
   .logo {
-    height: 60px; /* Tamaño reducido para móviles */
+    height: 80px; /* Tamaño reducido para móviles (ajustado proporcionalmente) */
+  }
+  
+  header h1 {
+    font-size: 1.4rem; /* Tamaño reducido para móviles */
   }
 }

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registro de Autos - Automotriz Los Amigos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="registro.css">
+</head>
+<body>
+
+  <header>
+    <img src="../../../images/LOGO.jpg" alt="Logo Automotriz Los Amigos" class="logo">
+    <h1>Automotriz Los Amigos</h1>
+  </header>
+
+  <main>
+    <h2>Registro de Auto</h2>
+    <form action="registrar_auto.php" method="POST" id="registroAutoForm">
+      <div class="form-column">
+        <div class="form-group">
+          <label for="marca">Marca</label>
+          <input type="text" name="marca" required />
+        </div>
+        <div class="form-group">
+          <label for="modelo">Modelo</label>
+          <input type="text" name="modelo" required />
+        </div>
+        <div class="form-group">
+          <label for="familia">Familia</label>
+          <input type="text" name="familia" required />
+        </div>
+        <div class="form-group">
+          <label for="color">Color</label>
+          <input type="text" name="color" required />
+        </div>
+        <div class="form-group">
+          <label for="puertas">Número de Puertas</label>
+          <select name="puertas" required>
+            <option value="">Seleccione...</option>
+            <option value="2">2 Puertas</option>
+            <option value="3">3 Puertas</option>
+            <option value="4">4 Puertas</option>
+            <option value="5">5 Puertas</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-column">
+        <div class="form-group">
+          <label for="precio_contado">Precio Contado</label>
+          <input type="number" step="0.01" name="precio_contado" required />
+        </div>
+        <div class="form-group">
+          <label for="precio_credito">Precio Crédito</label>
+          <input type="number" step="0.01" name="precio_credito" />
+        </div>
+        <div class="form-group">
+          <label for="costo_compra">Costo de Compra</label>
+          <input type="number" step="0.01" name="costo_compra" />
+        </div>
+        <div class="form-group">
+          <label for="kilometraje">Kilometraje</label>
+          <input type="number" name="kilometraje" step="1" min="0" />
+        </div>
+        <div class="form-group">
+          <label for="motor">Motor</label>
+          <input type="text" name="motor" placeholder="Ej: 2.0L Turbo" />
+        </div>
+        <div class="form-group">
+          <label for="transmision">Transmisión</label>
+          <select name="transmision">
+            <option value="">Seleccione...</option>
+            <option value="Automática">Automática</option>
+            <option value="Manual">Manual</option>
+            <option value="CVT">CVT</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción / Comentarios</label>
+          <textarea 
+            name="descripcion" 
+            placeholder="Detalles adicionales sobre el vehículo..." 
+            style="resize: none; width: 100%; height: 120px;" 
+            maxlength="255"
+          ></textarea>
+        </div>
+      </div>
+
+      <div style="width: 100%; text-align: center;">
+        <button type="submit">Registrar Auto</button>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 Automotriz Los Amigos. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    document.getElementById('registroAutoForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Registrando...';
+        
+        try {
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this)
+            });
+            
+            // Verificar si la respuesta es JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                const text = await response.text();
+                throw new Error(`Respuesta inesperada: ${text.substring(0, 100)}...`);
+            }
+            
+            const result = await response.json();
+            
+            if (!response.ok || !result.success) {
+                throw new Error(result.error || 'Error desconocido');
+            }
+            
+            alert(result.message + '\nID del vehículo: ' + result.id);
+            this.reset();
+            
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error: ' + error.message);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    });
+  </script>
+  
+</body>
+</html>

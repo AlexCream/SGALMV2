@@ -9,7 +9,7 @@
 <body>
   <header>
     <div class="header-left">
-      <img src="logo.jpg" alt="Logo Automotriz Los Amigos" class="logo">
+      <img src="../../images/LOGO.jpg" alt="Logo Automotriz Los Amigos" class="logo">
       <button onclick="irAInicio()">Inicio</button>
     </div>
     <h1>Automotriz Los Amigos</h1>
@@ -45,7 +45,6 @@
               <td>07/04/2025</td>
               <td>11:00 AM</td>
               <td>
-                <button class="btn-action" onclick="modificarCita('01')">Modificar</button>
                 <button class="btn-action" onclick="cancelarCita('01')">Cancelar</button>
               </td>
             </tr>
@@ -57,7 +56,6 @@
               <td>02/02/2025</td>
               <td>12:30 PM</td>
               <td>
-                <button class="btn-action" onclick="modificarCita('02')">Modificar</button>
                 <button class="btn-action" onclick="cancelarCita('02')">Cancelar</button>
               </td>
             </tr>
@@ -74,10 +72,6 @@
   <script>
     function irAInicio() {
       alert("Redirigiendo al inicio");
-    }
-
-    function modificarCita(id) {
-      alert(`Modificar cita con ID: ${id}`);
     }
 
     function cancelarCita(id) {
