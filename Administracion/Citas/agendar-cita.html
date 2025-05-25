@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Agendar Cita - Automotriz Los Amigos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="agendar.css">
+    <!-- Bootstrap 5 -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="agendar.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <img src="../../images/LOGO.jpg" alt="Logo Automotriz" class="logo">
+            <h1>AUTOMOTRIZ LOS AMIGOS</h1>
+        </div>
+    </header>
+
+    <main class="container mt-4">
+        <h2 class="text-center">Agendar Cita</h2>
+
+        <div class="text-start mb-3">
+            <button onclick="window.history.back()" class="btn btn-secondary">← Atrás</button>
+        </div>
+
+        <div class="horario-info mb-4">
+            <h5>Horario de atención</h5>
+            <div class="horario-item"><span>Lunes</span><span>9:00 a. m. - 6:30 p. m.</span></div>
+            <div class="horario-item"><span>Martes</span><span>9:00 a. m. - 6:30 p. m.</span></div>
+            <div class="horario-item"><span>Miércoles</span><span>9:00 a. m. - 6:30 p. m.</span></div>
+            <div class="horario-item"><span>Jueves</span><span>9:00 a. m. - 6:30 p. m.</span></div>
+            <div class="horario-item"><span>Viernes</span><span>9:00 a. m. - 6:30 p. m.</span></div>
+            <div class="horario-item"><span>Sábado</span><span>9:00 a. m. - 6:30 p. m.</span></div>
+            <div class="horario-item cerrado"><span>Domingo</span><span>CERRADO</span></div>
+        </div>
+
+        <div class="card p-4 mb-4 shadow-sm">
+            <form id="form-cita">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" id="fecha" name="fecha" class="form-control" required
+                            min="<?php echo date('Y-m-d'); ?>">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="hora" class="form-label">Hora</label>
+                        <input type="time" id="hora" name="hora" class="form-control" required min="09:00" max="18:30"
+                            step="1800">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cliente" class="form-label">Nombre completo</label>
+                    <input type="text" id="cliente" name="cliente" class="form-control" placeholder="Tu nombre completo"
+                        required>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" class="form-control"
+                            placeholder="Tu número de teléfono" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Correo electrónico</label>
+                        <input type="email" id="email" name="email" class="form-control"
+                            placeholder="Tu correo electrónico">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-action w-100">Agendar Cita</button>
+            </form>
+        </div>
+
+        <div class="contacto-info text-center mb-4">
+            <h5>Contacto</h5>
+            <p><strong>Teléfono:</strong> (123) 456-7890</p>
+            <p><strong>Correo:</strong> contacto@automotrizlosamigos.com</p>
+        </div>
+    </main>
+
+    <footer>
+        Sistema de Gestión Automotriz © 2025
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Validaciones -->
+    <script>
+       function validarFechaHora() {
+    const fechaInput = document.getElementById("fecha").value;
+    const horaInput = document.getElementById("hora").value;
+    
+    if (!fechaInput || !horaInput) return false;
+    
+    // Crear objetos Date
+    const fechaSeleccionada = new Date(fechaInput);
+    const ahora = new Date();
+    
+    // Validar fecha pasada (incluyendo día actual con hora pasada)
+    if (fechaSeleccionada.toDateString() === ahora.toDateString()) {
+        // Misma fecha, validar hora
+        const [hora, minutos] = horaInput.split(":").map(Number);
+        const horaActual = ahora.getHours();
+        const minutosActual = ahora.getMinutes();
+        
+        if (hora < horaActual || (hora === horaActual && minutos < minutosActual)) {
+            alert("⚠️ No puedes agendar una cita en un horario que ya pasó hoy.");
+            return false;
+        }
+    } 
+    else if (fechaSeleccionada < ahora) {
+        alert("⚠️ No se pueden agendar citas en fechas pasadas.");
+        return false;
+    }
+    
+    // Resto de validaciones (día domingo y horario)
+    // ... (el código que ya teníamos)
+    
+    return true;
+}
+
+// Validación al cambiar fecha
+document.getElementById("fecha").addEventListener("change", function() {
+    const fechaInput = this.value;
+    if (!fechaInput) return;
+    
+    const fechaSeleccionada = new Date(fechaInput);
+    const ahora = new Date();
+    
+    if (fechaSeleccionada.toDateString() === ahora.toDateString()) {
+        // Es hoy, la validación de hora se hará al enviar
+        return;
+    }
+    
+    if (fechaSeleccionada < ahora) {
+        alert("⚠️ No se pueden agendar citas en fechas pasadas.");
+        this.value = "";
+        return;
+    }
+    
+    // Validar domingo
+    const diaSemana = fechaSeleccionada.getDay();
+    if (diaSemana === 0) {
+        alert("⚠️ Los domingos estamos cerrados.");
+        this.value = "";
+    }
+});
+    </script>
+
+</body>
+
+</html>

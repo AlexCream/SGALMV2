@@ -16,7 +16,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background: linear-gradient(135deg, var(--secondary-color), #000);
+  background: linear-gradient(135deg, #000, var(--secondary-color));
   border-bottom: 3px solid var(--main-color);
   color: white;
 }
@@ -28,7 +28,7 @@ header {
 }
 
 .logo {
-  height: 84px; /* Tamaño aumentado a 84px como solicitaste */
+  height: 120px; /* Tamaño aumentado a 84px como solicitaste */
   width: auto;
 }
 
